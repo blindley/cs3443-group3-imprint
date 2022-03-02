@@ -7,11 +7,11 @@ import java.util.ArrayList;
 
 public class CSVLoader {
 	public static ArrayList<String[]> loadCSV(String filename) throws IOException {
-	try (
+		try (
 			BufferedReader reader = new BufferedReader(new FileReader("data/" + filename))
-			)
+		)
 		{
-	ArrayList<String[]> rows = new ArrayList<String[]>();
+			ArrayList<String[]> rows = new ArrayList<String[]>();
 			String line;
 			while ((line = reader.readLine()) != null) {
 				line = line.trim();
