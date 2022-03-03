@@ -14,8 +14,10 @@ public class PassOrFailController implements Initializable {
 	public Labeled backLabel;
 	public Button passButton;
 	public Button failButton;
+	public Button flipButton;
 	
 	ReviewSession session;
+	FlashCard currentCard;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -56,24 +58,47 @@ public class PassOrFailController implements Initializable {
 			session.addCard(fc);
 		}
 		
-		FlashCard nextCard = session.removeCard();		
-		frontLabel.setText(nextCard.getFront());
-		backLabel.setText(nextCard.getBack());
-		session.addCard(nextCard);
+		currentCard = session.removeCard();		
+		frontLabel.setText(currentCard.getFront());
+		backLabel.setText(currentCard.getBack());
+	}
+	
+	private void flipToFront() {
+		passButton.setVisible(false);
+		failButton.setVisible(false);
+		backLabel.setVisible(false);
+		
+		flipButton.setVisible(true);
+	}
+	
+	private void flipToBack() {
+		passButton.setVisible(true);
+		failButton.setVisible(true);
+		backLabel.setVisible(true);
+		
+		flipButton.setVisible(false);		
 	}
 	
 	public void onPassButtonPressed() {
-		FlashCard nextCard = session.removeCard();		
-		frontLabel.setText(nextCard.getFront());
-		backLabel.setText(nextCard.getBack());
-		session.addCard(nextCard);
+		session.addCard(currentCard);
+		currentCard = session.removeCard();		
+		frontLabel.setText(currentCard.getFront());
+		backLabel.setText(currentCard.getBack());
+		
+		flipToFront();
 	}
 	
 	public void onFailButtonPressed() {
-		FlashCard nextCard = session.removeCard();		
-		frontLabel.setText(nextCard.getFront());
-		backLabel.setText(nextCard.getBack());
-		session.addCard(nextCard);
+		session.addCard(currentCard);
+		currentCard = session.removeCard();		
+		frontLabel.setText(currentCard.getFront());
+		backLabel.setText(currentCard.getBack());
+		
+		flipToFront();
+	}
+	
+	public void onFlipButtonPressed() {
+		flipToBack();
 	}
 	
 }
