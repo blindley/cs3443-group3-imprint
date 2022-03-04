@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Labeled;
 
-public class PassOrFailController implements Initializable {
+public class ReviewSceneController implements Initializable {
 	public Labeled frontLabel;
 	public Labeled backLabel;
 	public Button passButton;
