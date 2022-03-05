@@ -1,24 +1,73 @@
 package application;
 
+import java.time.LocalDate;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.PriorityQueue;
 
 public class DeckProgress {
-	ArrayList<String> newCards;
+	CardProgress nextCard;
+	ArrayDeque<String> newCards;
 	PriorityQueue<CardProgress> reviewQueue;
 	
 	DeckProgress() {
-		newCards = new ArrayList<String>();
+		nextCard = null;
+		newCards = new ArrayDeque<String>();
 		reviewQueue = new PriorityQueue<CardProgress>(0, new CardProgressComparator());
+	}
+	
+	void updateNextCard() {
+		nextCard = null;
+		
+		CardProgress nextReviewCard = reviewQueue.element();
+		if (nextReviewCard != null) {
+			LocalDate today = LocalDate.now();
+			if (nextReviewCard.dueDate.compareTo(today) <= 0) {
+				nextCard = reviewQueue.remove();
+			}
+		}
+		
+		String nextNewCardId = newCards.poll();
+		if (nextNewCardId != null) {
+			nextCard = new CardProgress();
+			nextCard.cardId = nextNewCardId;
+			nextCard.interval = 0;
+			nextCard.dueDate = LocalDate.now();
+		}
+	}
+	
+	String getNextDueCardId() {
+		if (nextCard == null) { return null; }
+		
+		return nextCard.cardId;
+	}
+	
+	void passNextDueCard() {
+		if (nextCard.interval == 0) {
+			nextCard.interval = 1;
+		} else {
+			nextCard.interval *= 2;
+		}
+		
+		nextCard.dueDate = LocalDate.now().plusDays(nextCard.interval);
+		reviewQueue.add(nextCard);
+		
+		updateNextCard();
+	}
+	
+	void failNextDueCard() {
+		nextCard.interval = 0;
+		nextCard.dueDate = LocalDate.now();
+		reviewQueue.add(nextCard);
+		updateNextCard();
 	}
 }
 
 class CardProgress {
 	public String cardId;
 	public int interval;
-	public Date dueDate;
+	public LocalDate dueDate;
 }
 
 class CardProgressComparator implements Comparator<CardProgress> {
