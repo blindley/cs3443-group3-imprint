@@ -2,7 +2,6 @@ package application;
 
 import java.time.LocalDate;
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -11,56 +10,67 @@ public class DeckProgress {
 	ArrayDeque<String> newCards;
 	PriorityQueue<CardProgress> reviewQueue;
 	
-	DeckProgress() {
+	public DeckProgress() {
 		nextCard = null;
 		newCards = new ArrayDeque<String>();
-		reviewQueue = new PriorityQueue<CardProgress>(0, new CardProgressComparator());
+		reviewQueue = new PriorityQueue<CardProgress>(new CardProgressComparator());
 	}
 	
-	void updateNextCard() {
-		nextCard = null;
-		
-		CardProgress nextReviewCard = reviewQueue.element();
-		if (nextReviewCard != null) {
-			LocalDate today = LocalDate.now();
-			if (nextReviewCard.dueDate.compareTo(today) <= 0) {
-				nextCard = reviewQueue.remove();
+	private void updateNextCard() {
+		if (nextCard == null) {
+			CardProgress nextReviewCard = reviewQueue.peek();
+			if (nextReviewCard != null) {
+				LocalDate today = LocalDate.now();
+				if (nextReviewCard.dueDate.compareTo(today) <= 0) {
+					nextCard = reviewQueue.remove();
+					return;
+				}
+			}
+			
+			String nextNewCardId = newCards.poll();
+			if (nextNewCardId != null) {
+				nextCard = new CardProgress();
+				nextCard.cardId = nextNewCardId;
+				nextCard.interval = 0;
+				nextCard.dueDate = LocalDate.now();
 			}
 		}
-		
-		String nextNewCardId = newCards.poll();
-		if (nextNewCardId != null) {
-			nextCard = new CardProgress();
-			nextCard.cardId = nextNewCardId;
-			nextCard.interval = 0;
-			nextCard.dueDate = LocalDate.now();
-		}
 	}
 	
-	String getNextDueCardId() {
+	void addNewCard(String id) {
+		newCards.add(id);
+	}
+	
+	public String getNextDueCardId() {
+		updateNextCard();
 		if (nextCard == null) { return null; }
 		
 		return nextCard.cardId;
 	}
 	
-	void passNextDueCard() {
-		if (nextCard.interval == 0) {
-			nextCard.interval = 1;
-		} else {
-			nextCard.interval *= 2;
-		}
-		
-		nextCard.dueDate = LocalDate.now().plusDays(nextCard.interval);
-		reviewQueue.add(nextCard);
-		
+	public void passNextCard() {
 		updateNextCard();
+		if (nextCard != null) {		
+			if (nextCard.interval == 0) {
+				nextCard.interval = 1;
+			} else {
+				nextCard.interval *= 2;
+			}
+			
+			nextCard.dueDate = LocalDate.now().plusDays(nextCard.interval);
+			reviewQueue.add(nextCard);
+			nextCard = null;
+		}
 	}
 	
-	void failNextDueCard() {
-		nextCard.interval = 0;
-		nextCard.dueDate = LocalDate.now();
-		reviewQueue.add(nextCard);
+	public void failNextCard() {
 		updateNextCard();
+		if (nextCard != null) {
+			nextCard.interval = 0;
+			nextCard.dueDate = LocalDate.now();
+			reviewQueue.add(nextCard);
+			nextCard = null;
+		}
 	}
 }
 
