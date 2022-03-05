@@ -12,28 +12,12 @@ public class ReviewSession {
 		deck = new FlashCardDeck();
 		progress = new DeckProgress();
 		
-		ArrayList<String[]> cardData = new ArrayList<String[]>();
+		ArrayList<String[]> cardData;
 		
 		try {
 			cardData = CSVLoader.loadCSV("state-capitals.csv");
 		} catch (IOException e) {
-			String[] sampleCardData = {
-				"What is the capital of France?", "Paris",
-				"What is the derivative of sin(x)?", "cos(x)",
-				"What is the opposite of left?", "right",
-				"What is the average distance from the Earth to the Sun", "93 million miles",
-				"How many letters are in the alphabet?", "26"
-			};
-
-			cardData = new ArrayList<String[]>();
-
-			for (int i = 0; i < sampleCardData.length / 2; i++) {
-				String[] row = new String[3];
-				row[0] = "" + i;
-				row[1] = sampleCardData[i * 2];
-				row[2] = sampleCardData[i * 2 + 1];
-				cardData.add(row);
-			}
+			cardData = generateSampleCardData();
 		}
 		
 		for (int i = 0; i < cardData.size(); i++) {
@@ -64,6 +48,30 @@ public class ReviewSession {
 	
 	public void failNextCard() {
 		progress.failNextCard();
+	}
+	
+	static private ArrayList<String[]> generateSampleCardData() {
+		ArrayList<String[]> cardData = new ArrayList<String[]>();
+		
+		String[] sampleCardData = {
+			"What is the capital of France?", "Paris",
+			"What is the derivative of sin(x)?", "cos(x)",
+			"What is the opposite of left?", "right",
+			"What is the average distance from the Earth to the Sun", "93 million miles",
+			"How many letters are in the alphabet?", "26"
+		};
+
+		cardData = new ArrayList<String[]>();
+
+		for (int i = 0; i < sampleCardData.length / 2; i++) {
+			String[] row = new String[3];
+			row[0] = "" + i;
+			row[1] = sampleCardData[i * 2];
+			row[2] = sampleCardData[i * 2 + 1];
+			cardData.add(row);
+		}
+		
+		return cardData;
 	}
 }
 
