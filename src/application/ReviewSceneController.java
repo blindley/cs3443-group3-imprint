@@ -45,6 +45,12 @@ public class ReviewSceneController implements Initializable {
 	}
 	
 	private void endSession() {
+		try {
+			session.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		Stage stage = (Stage) flipButton.getScene().getWindow();
 		stage.close();
 	}

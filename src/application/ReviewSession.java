@@ -50,6 +50,10 @@ public class ReviewSession {
 		progress.failNextCard();
 	}
 	
+	public void save() throws IOException {
+		progress.save("state-capitals", "user01");
+	}
+	
 	static private ArrayList<String[]> generateSampleCardData() {
 		ArrayList<String[]> cardData = new ArrayList<String[]>();
 		

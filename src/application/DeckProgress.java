@@ -1,5 +1,9 @@
 package application;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayDeque;
 import java.util.Comparator;
@@ -72,12 +76,40 @@ public class DeckProgress {
 			nextCard = null;
 		}
 	}
+	
+	public void save(String deckName, String userName) throws IOException {
+		String path = "data/users/" + userName + "/" + deckName + ".csv";
+		File file = new File(path);
+		file.getParentFile().mkdirs();
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+			if (nextCard != null) {
+				writer.write(nextCard.toString());
+				writer.newLine();
+			}
+			
+			for (CardProgress cp : reviewQueue) {
+				writer.write(cp.toString());
+				writer.newLine();
+			}
+			
+			for (String cardId : newCards) {
+				String line = cardId + ",0," + "new";
+				writer.write(line);
+				writer.newLine();
+			}
+		}
+	}
 }
 
 class CardProgress {
 	public String cardId;
 	public int interval;
 	public LocalDate dueDate;
+	
+	@Override
+	public String toString() {
+		return cardId + "," + interval + "," + dueDate;
+	}
 }
 
 class CardProgressComparator implements Comparator<CardProgress> {
