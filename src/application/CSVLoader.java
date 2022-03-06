@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class CSVLoader {
 	public static ArrayList<String[]> loadCSV(String filename) throws IOException {
 		try (
-			BufferedReader reader = new BufferedReader(new FileReader("data/" + filename))
+			BufferedReader reader = new BufferedReader(new FileReader(filename))
 		)
 		{
 			ArrayList<String[]> rows = new ArrayList<String[]>();

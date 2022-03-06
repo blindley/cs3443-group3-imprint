@@ -15,7 +15,7 @@ public class ReviewSession {
 		ArrayList<String[]> cardData;
 		
 		try {
-			cardData = CSVLoader.loadCSV("state-capitals-abbr.csv");
+			cardData = CSVLoader.loadCSV("data/decks/state-capitals-abbr.csv");
 		} catch (IOException e) {
 			cardData = generateSampleCardData();
 		}
