@@ -28,6 +28,14 @@ public class ReviewSceneController implements Initializable {
 		backLabel.setText(currentCard.getBack());
 	}
 	
+	public void shutdown() {
+		try {
+			session.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private void flipToFront() {
 		passButton.setVisible(false);
 		failButton.setVisible(false);
@@ -45,11 +53,11 @@ public class ReviewSceneController implements Initializable {
 	}
 	
 	private void endSession() {
-		try {
-			session.save();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			session.save();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		
 		Stage stage = (Stage) flipButton.getScene().getWindow();
 		stage.close();
@@ -81,5 +89,4 @@ public class ReviewSceneController implements Initializable {
 	public void onFlipButtonPressed() {
 		flipToBack();
 	}
-	
 }
