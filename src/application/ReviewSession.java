@@ -15,7 +15,7 @@ public class ReviewSession {
 		ArrayList<String[]> cardData;
 		
 		try {
-			cardData = CSVLoader.loadCSV("state-capitals.csv");
+			cardData = CSVLoader.loadCSV("state-capitals-abbr.csv");
 		} catch (IOException e) {
 			cardData = generateSampleCardData();
 		}
@@ -51,7 +51,7 @@ public class ReviewSession {
 	}
 	
 	public void save() throws IOException {
-		progress.save("state-capitals", "user01");
+		progress.save("state-capitals-abbr", "user01");
 	}
 	
 	static private ArrayList<String[]> generateSampleCardData() {
