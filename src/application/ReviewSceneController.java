@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Labeled;
+import javafx.stage.Stage;
 
 public class ReviewSceneController implements Initializable {
 	public Labeled frontLabel;
@@ -17,50 +18,22 @@ public class ReviewSceneController implements Initializable {
 	public Button flipButton;
 	
 	ReviewSession session;
-	FlashCard currentCard;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		session = new ReviewSession();
 		
-		ArrayList<String[]> cardData = new ArrayList<String[]>();
-		
-		try {
-			cardData = CSVLoader.loadCSV("state-capitals.csv");
-		} catch (IOException e) {
-			String[] sampleCardData = {
-				"What is the capital of France?", "Paris",
-				"What is the derivative of sin(x)?", "cos(x)",
-				"What is the opposite of left?", "right",
-				"What is the average distance from the Earth to the Sun", "93 million miles",
-				"How many letters are in the alphabet?", "26"
-			};
-
-			cardData = new ArrayList<String[]>();
-
-			for (int i = 0; i < sampleCardData.length / 2; i++) {
-				String[] row = new String[3];
-				row[0] = "" + i;
-				row[1] = sampleCardData[i * 2];
-				row[2] = sampleCardData[i * 2 + 1];
-				cardData.add(row);
-			}
-		}
-		
-		for (int i = 0; i < cardData.size(); i++) {
-			String front = cardData.get(i)[1];
-			String back = cardData.get(i)[2];
-			
-			FlashCard fc = new FlashCard();
-			fc.setFront(front);
-			fc.setBack(back);
-			
-			session.addCard(fc);
-		}
-		
-		currentCard = session.removeCard();		
+		FlashCard currentCard = session.getNextCard();
 		frontLabel.setText(currentCard.getFront());
 		backLabel.setText(currentCard.getBack());
+	}
+	
+	public void shutdown() {
+		try {
+			session.save();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	private void flipToFront() {
@@ -79,26 +52,41 @@ public class ReviewSceneController implements Initializable {
 		flipButton.setVisible(false);		
 	}
 	
-	public void onPassButtonPressed() {
-		session.addCard(currentCard);
-		currentCard = session.removeCard();		
-		frontLabel.setText(currentCard.getFront());
-		backLabel.setText(currentCard.getBack());
+	private void endSession() {
+//		try {
+//			session.save();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		
-		flipToFront();
+		Stage stage = (Stage) flipButton.getScene().getWindow();
+		stage.close();
+	}
+	
+	private void nextCard() {
+		FlashCard currentCard = session.getNextCard();
+		
+		if (currentCard == null) {
+			endSession();
+		} else {
+			frontLabel.setText(currentCard.getFront());
+			backLabel.setText(currentCard.getBack());
+		
+			flipToFront();
+		}
+	}
+	
+	public void onPassButtonPressed() {
+		session.passNextCard();		
+		nextCard();
 	}
 	
 	public void onFailButtonPressed() {
-		session.addCard(currentCard);
-		currentCard = session.removeCard();		
-		frontLabel.setText(currentCard.getFront());
-		backLabel.setText(currentCard.getBack());
-		
-		flipToFront();
+		session.failNextCard();
+		nextCard();
 	}
 	
 	public void onFlipButtonPressed() {
 		flipToBack();
 	}
-	
 }
