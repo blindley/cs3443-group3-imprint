@@ -31,8 +31,15 @@ public class ReviewSession {
 			fc.setBack(back);
 			
 			deck.addOrUpdateCard(id, fc);
-			progress.addNewCard(id);
-		}		
+//			progress.addNewCard(id);
+		}
+		
+		try {
+			progress.load("state-capitals-abbr", "user01");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public FlashCard getNextCard() {

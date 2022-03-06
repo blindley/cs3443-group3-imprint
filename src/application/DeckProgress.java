@@ -1,11 +1,15 @@
 package application;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -78,7 +82,7 @@ public class DeckProgress {
 	}
 	
 	public void save(String deckName, String userName) throws IOException {
-		String path = "data/users/" + userName + "/" + deckName + ".csv";
+		String path = buildProgressFilePath(deckName, userName);
 		File file = new File(path);
 		file.getParentFile().mkdirs();
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
@@ -98,6 +102,31 @@ public class DeckProgress {
 				writer.newLine();
 			}
 		}
+	}
+	
+	public void load(String deckName, String userName) throws IOException {
+		String path = buildProgressFilePath(deckName, userName);
+		ArrayList<String[]> csvContent = CSVLoader.loadCSV(path);
+		for (String[] row : csvContent) {
+			if (row.length >= 3) {
+				String id = row[0];
+				int interval = Integer.parseInt(row[1]);
+				if (row[2].compareTo("new") == 0) {
+					newCards.add(id);
+				} else {
+					LocalDate dueDate = LocalDate.parse(row[2]);
+					CardProgress cp = new CardProgress();
+					cp.cardId = id;
+					cp.interval = interval;
+					cp.dueDate = dueDate;
+					reviewQueue.add(cp);
+				}
+			}
+		}
+	}
+	
+	private static String buildProgressFilePath(String deckName, String userName) {
+		return "data/users/" + userName + "/" + deckName + ".csv";
 	}
 }
 
