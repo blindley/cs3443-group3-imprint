@@ -42,7 +42,7 @@ public class ReviewSession {
 		}
 		
 		try {
-			progress.load(userName, deckName);
+			progress.load(userName, deckName, deck);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

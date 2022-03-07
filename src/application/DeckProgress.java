@@ -11,7 +11,10 @@ import java.time.LocalDate;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.PriorityQueue;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class DeckProgress {
 	CardProgress nextCard;
@@ -104,7 +107,7 @@ public class DeckProgress {
 		}
 	}
 	
-	public void load(String userName, String deckName) throws IOException {
+	public void load(String userName, String deckName, FlashCardDeck deck) throws IOException {
 		ArrayList<String[]> csvContent;
 		String path = buildProgressFilePath(userName, deckName);
 		
@@ -113,7 +116,9 @@ public class DeckProgress {
 			csvContent = CSVLoader.loadCSV(path);			
 		} else {
 			csvContent = new ArrayList<String[]>();
-		}		
+		}
+		
+		TreeSet<String> cardIds = deck.getCardIds();
 		
 		for (String[] row : csvContent) {
 			if (row.length >= 3) {
@@ -129,7 +134,14 @@ public class DeckProgress {
 					cp.dueDate = dueDate;
 					reviewQueue.add(cp);
 				}
+				
+				cardIds.remove(id);
 			}
+		}
+		
+		// add all remaining card ids
+		for (String id : cardIds) {
+			newCards.add(id);
 		}
 	}
 	
