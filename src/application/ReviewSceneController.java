@@ -21,7 +21,7 @@ public class ReviewSceneController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		session = new ReviewSession();
+		session = new ReviewSession("user01", "state-capitals-abbr");
 		
 		FlashCard currentCard = session.getNextCard();
 		frontLabel.setText(currentCard.getFront());

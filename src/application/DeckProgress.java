@@ -81,8 +81,8 @@ public class DeckProgress {
 		}
 	}
 	
-	public void save(String deckName, String userName) throws IOException {
-		String path = buildProgressFilePath(deckName, userName);
+	public void save(String userName, String deckName) throws IOException {
+		String path = buildProgressFilePath(userName, deckName);
 		File file = new File(path);
 		file.getParentFile().mkdirs();
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
@@ -104,8 +104,8 @@ public class DeckProgress {
 		}
 	}
 	
-	public void load(String deckName, String userName) throws IOException {
-		String path = buildProgressFilePath(deckName, userName);
+	public void load(String userName, String deckName) throws IOException {
+		String path = buildProgressFilePath(userName, deckName);
 		ArrayList<String[]> csvContent = CSVLoader.loadCSV(path);
 		for (String[] row : csvContent) {
 			if (row.length >= 3) {
@@ -125,7 +125,7 @@ public class DeckProgress {
 		}
 	}
 	
-	private static String buildProgressFilePath(String deckName, String userName) {
+	private static String buildProgressFilePath(String userName, String deckName) {
 		return "data/users/" + userName + "/" + deckName + ".csv";
 	}
 }

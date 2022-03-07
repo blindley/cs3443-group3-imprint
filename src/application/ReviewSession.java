@@ -8,14 +8,21 @@ public class ReviewSession {
 	FlashCardDeck deck;
 	DeckProgress progress;
 	
-	public ReviewSession() {
+	String userName;
+	String deckName;
+	
+	public ReviewSession(String userName, String deckName) {
 		deck = new FlashCardDeck();
 		progress = new DeckProgress();
+		this.userName = userName;
+		this.deckName = deckName;
 		
 		ArrayList<String[]> cardData;
 		
+		String deckFilename = "data/decks/" + deckName + ".csv";
+		
 		try {
-			cardData = CSVLoader.loadCSV("data/decks/state-capitals-abbr.csv");
+			cardData = CSVLoader.loadCSV(deckFilename);
 		} catch (IOException e) {
 			cardData = generateSampleCardData();
 		}
@@ -35,7 +42,7 @@ public class ReviewSession {
 		}
 		
 		try {
-			progress.load("state-capitals-abbr", "user01");
+			progress.load(userName, deckName);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -58,7 +65,7 @@ public class ReviewSession {
 	}
 	
 	public void save() throws IOException {
-		progress.save("state-capitals-abbr", "user01");
+		progress.save(userName, deckName);
 	}
 	
 	static private ArrayList<String[]> generateSampleCardData() {
