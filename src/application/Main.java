@@ -34,22 +34,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		String configFilePath = "config.csv";
-		File configFile = new File(configFilePath);
-		if (configFile.exists() && configFile.isFile()) {
-			try {
-				ArrayList<String[]> configData = CSVLoader.loadCSV(configFilePath);
-				for (String[] row : configData) {
-					System.out.println(String.join(", ", row));
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		} else {
-			System.out.println(configFilePath + " does not exist");
-		}
+		Config.initialize();
 		
 		launch(args);
 	}
