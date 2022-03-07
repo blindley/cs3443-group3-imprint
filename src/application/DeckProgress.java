@@ -105,8 +105,16 @@ public class DeckProgress {
 	}
 	
 	public void load(String userName, String deckName) throws IOException {
+		ArrayList<String[]> csvContent;
 		String path = buildProgressFilePath(userName, deckName);
-		ArrayList<String[]> csvContent = CSVLoader.loadCSV(path);
+		
+		File file = new File(path);
+		if (file.exists() && file.isFile()) {
+			csvContent = CSVLoader.loadCSV(path);			
+		} else {
+			csvContent = new ArrayList<String[]>();
+		}		
+		
 		for (String[] row : csvContent) {
 			if (row.length >= 3) {
 				String id = row[0];

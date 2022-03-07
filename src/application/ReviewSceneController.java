@@ -24,8 +24,11 @@ public class ReviewSceneController implements Initializable {
 		session = new ReviewSession("user01", "state-capitals-abbr");
 		
 		FlashCard currentCard = session.getNextCard();
-		frontLabel.setText(currentCard.getFront());
-		backLabel.setText(currentCard.getBack());
+		// TODO: This shouldn't be necessary. I should be able to end the session, but getWindow() is returning null
+		if (currentCard != null) {
+			frontLabel.setText(currentCard.getFront());
+			backLabel.setText(currentCard.getBack());
+		}
 	}
 	
 	public void shutdown() {
