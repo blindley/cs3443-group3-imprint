@@ -28,7 +28,7 @@ public class DeckProgress {
 		if (nextCard == null) {
 			CardProgress nextReviewCard = reviewQueue.peek();
 			if (nextReviewCard != null) {
-				LocalDate today = LocalDate.now();
+				LocalDate today = now();
 				if (nextReviewCard.dueDate.compareTo(today) <= 0) {
 					nextCard = reviewQueue.remove();
 					return;
@@ -40,7 +40,7 @@ public class DeckProgress {
 				nextCard = new CardProgress();
 				nextCard.cardId = nextNewCardId;
 				nextCard.interval = 0;
-				nextCard.dueDate = LocalDate.now();
+				nextCard.dueDate = now();
 			}
 		}
 	}
@@ -65,7 +65,7 @@ public class DeckProgress {
 				nextCard.interval *= 2;
 			}
 			
-			nextCard.dueDate = LocalDate.now().plusDays(nextCard.interval);
+			nextCard.dueDate = now().plusDays(nextCard.interval);
 			reviewQueue.add(nextCard);
 			nextCard = null;
 		}
@@ -75,7 +75,7 @@ public class DeckProgress {
 		updateNextCard();
 		if (nextCard != null) {
 			nextCard.interval = 0;
-			nextCard.dueDate = LocalDate.now();
+			nextCard.dueDate = now();
 			reviewQueue.add(nextCard);
 			nextCard = null;
 		}
@@ -127,6 +127,17 @@ public class DeckProgress {
 	
 	private static String buildProgressFilePath(String userName, String deckName) {
 		return "data/users/" + userName + "/" + deckName + ".csv";
+	}
+
+	private static LocalDate now() {
+		// Used for simulating a different date, for testing the scheduling functionality
+		int dateOffset = 0;
+		String dateOffsetStr = Config.getValue("dateOffset");
+		if (dateOffsetStr != null) {
+			dateOffset = Integer.parseInt(dateOffsetStr);
+		}
+		
+		return LocalDate.now().plusDays(dateOffset);
 	}
 }
 
