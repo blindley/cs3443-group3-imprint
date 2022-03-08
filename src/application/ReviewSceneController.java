@@ -21,7 +21,12 @@ public class ReviewSceneController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		session = new ReviewSession("user01", "state-capitals-abbr");
+		String startupDeckName = Config.getValue("startupDeck");
+		if (startupDeckName == null) {
+			startupDeckName = "sample-deck";
+		}
+		
+		session = new ReviewSession("user01", startupDeckName);
 		
 		FlashCard currentCard = session.getNextCard();
 		// TODO: This shouldn't be necessary. I should be able to end the session, but getWindow() is returning null
