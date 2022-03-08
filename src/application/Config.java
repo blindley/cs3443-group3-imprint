@@ -34,6 +34,10 @@ public class Config {
 		}
 	}
 	
+	public static HashMap<String, String> getAllConfigData() {
+		return configData;
+	}
+	
 	public static boolean containsKey(String key) {
 		return configData.containsKey(key);
 	}

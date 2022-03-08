@@ -7,12 +7,12 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Labeled;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class ReviewSceneController implements Initializable {
-	public Labeled frontLabel;
-	public Labeled backLabel;
+	public Label frontLabel;
+	public Label backLabel;
 	public Button passButton;
 	public Button failButton;
 	public Button flipButton;
