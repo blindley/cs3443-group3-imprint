@@ -1,14 +1,9 @@
 package application;
 	
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXMLLoader;
 
 
