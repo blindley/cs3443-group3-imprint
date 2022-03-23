@@ -25,7 +25,18 @@ public class ReviewSceneController implements Initializable {
 			startupDeckName = "sample-deck";
 		}
 		
-		session = new ReviewSession("user01", startupDeckName);
+//		session = new ReviewSession("user01", startupDeckName);
+//		
+//		FlashCard currentCard = session.getNextCard();
+//		// TODO: This shouldn't be necessary. I should be able to end the session, but getWindow() is returning null
+//		if (currentCard != null) {
+//			frontLabel.setText(currentCard.getFront());
+//			backLabel.setText(currentCard.getBack());
+//		}
+	}
+	
+	public void initSession(String userName, String deckName) {
+		session = new ReviewSession(userName, deckName);
 		
 		FlashCard currentCard = session.getNextCard();
 		// TODO: This shouldn't be necessary. I should be able to end the session, but getWindow() is returning null

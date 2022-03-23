@@ -2,20 +2,29 @@ package application;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 
 public class DeckSelectionController implements Initializable {
 
     @FXML
     private ListView<String> deckListView;
-
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		File deckDirectory = new File("data/decks");
@@ -26,7 +35,6 @@ public class DeckSelectionController implements Initializable {
 		};
 		
 		File[] deckFileList = deckDirectory.listFiles(filter);
-//		String[] deckNameList = new String[deckFileList.length];
 		ObservableList<String> deckNameList = FXCollections.observableArrayList();
 		
 		for (int i = 0; i < deckFileList.length; i++) {
@@ -36,12 +44,26 @@ public class DeckSelectionController implements Initializable {
 			deckNameList.add(deckName); 
 		}
 		
-		for (String deckName : deckNameList) {
-			System.out.println(deckName);
-		}
-		
 		deckListView.setItems(deckNameList);
-//		ObservableList<String> deckList = FXCollections.observableArrayList("state-capitals-abbr");
-	}    
+	}
+	
+	@FXML
+    void onBeginSessionButtonClicked(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("ReviewScene.fxml"));
+		Parent root = loader.load();
+		ReviewSceneController controller = (ReviewSceneController) loader.getController();
+		
+		String deckName = deckListView.getSelectionModel().getSelectedItem();
+		controller.initSession("user01", deckName);
+		
+    	Scene scene = new Scene(root);
+		
+		URL url = new File("src/application/application.css").toURI().toURL();
+		scene.getStylesheets().add(url.toExternalForm());
+    	
+    	Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    	window.setScene(scene);
+    	window.show();
+    }
     
 }
