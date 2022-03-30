@@ -1,6 +1,7 @@
 package application;
 	
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 import javafx.application.Application;
@@ -12,16 +13,26 @@ import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
 	static Stage primaryStage;
+	static ReviewSession reviewSession;
 	
 	public static Stage getPrimaryStage() {
 		return primaryStage;
 	}
 	
+	public static ReviewSession getReviewSession() {
+		return reviewSession;
+	}
+	
+	public static void setReviewSession(ReviewSession session) {
+		reviewSession = session;
+	}
+	
 	@Override
-	public void start(Stage stage) {
+	public void start(Stage stage) throws IOException {
 		primaryStage = stage;
-//		startReviewScene();
-		startDeckSelectionScene();
+		Scene scene = SceneLoader.loadDeckSelectionScene("user01");
+		primaryStage.setScene(scene);
+		primaryStage.show();
 	}
 	
 	public static void main(String[] args) {
@@ -31,6 +42,15 @@ public class Main extends Application {
 		}
 		
 		launch(args);
+		
+		if (reviewSession != null) {
+			try {
+				reviewSession.save();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	@SuppressWarnings("unused")
@@ -50,21 +70,5 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	@SuppressWarnings("unused")
-	public void startDeckSelectionScene() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("DeckSelectionScene.fxml"));
-			Parent root = loader.load();
-			
-			Scene scene = new Scene(root,600,450);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}	
 	}
 }

@@ -23,24 +23,7 @@ public class ReviewSceneController implements Initializable {
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		String startupDeckName = Config.getValue("startupDeck");
-		if (startupDeckName == null) {
-			startupDeckName = "sample-deck";
-		}
-		
-//		session = new ReviewSession("user01", startupDeckName);
-//		
-//		FlashCard currentCard = session.getNextCard();
-//		// TODO: This shouldn't be necessary. I should be able to end the session, but getWindow() is returning null
-//		if (currentCard != null) {
-//			frontLabel.setText(currentCard.getFront());
-//			backLabel.setText(currentCard.getBack());
-//		}
-	}
-	
-	public void initSession(String userName, String deckName) throws IOException {
-		session = new ReviewSession(userName, deckName);
-		session.save();
+		session = Main.getReviewSession();
 		
 		FlashCard currentCard = session.getNextCard();
 		// TODO: This shouldn't be necessary. I should be able to end the session, but getWindow() is returning null
@@ -49,15 +32,6 @@ public class ReviewSceneController implements Initializable {
 			backLabel.setText(currentCard.getBack());
 		} else {
 			System.out.println("No cards left to review today");
-		}
-	}
-	
-	public void shutdown() {
-		try {
-			System.out.println("Saving session");
-			session.save();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 	
@@ -78,18 +52,11 @@ public class ReviewSceneController implements Initializable {
 	}
 	
 	private void endSession() {
-//		try {
-//			session.save();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-		
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("DeckSelectionScene.fxml"));
-			Parent root = loader.load();
+			session.save();
+			Main.setReviewSession(null);
 			
-			Scene scene = new Scene(root,600,450);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());			
+			Scene scene = SceneLoader.loadDeckSelectionScene("user01");
 			
 			Stage primaryStage = Main.getPrimaryStage();
 			primaryStage.setScene(scene);			
@@ -97,18 +64,9 @@ public class ReviewSceneController implements Initializable {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
-		
-		Stage stage = (Stage) flipButton.getScene().getWindow();
-		stage.close();
 	}
 	
 	private void nextCard() {
-		try {
-			session.save();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		FlashCard currentCard = session.getNextCard();
 		
 		if (currentCard == null) {

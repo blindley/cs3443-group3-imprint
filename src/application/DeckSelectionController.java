@@ -50,24 +50,12 @@ public class DeckSelectionController implements Initializable {
 	@FXML
     void onBeginSessionButtonClicked(ActionEvent event) throws IOException {
 		String deckName = deckListView.getSelectionModel().getSelectedItem();
-		ReviewSession session = new ReviewSession("user01", deckName);
+		Scene scene = SceneLoader.loadReviewSessionScene("user01", deckName);
 		
-		if (session.hasNextCard()) {		
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("ReviewScene.fxml"));
-			Parent root = loader.load();
-			ReviewSceneController controller = (ReviewSceneController) loader.getController();
-			
-	    	Scene scene = new Scene(root);
-			
-			URL url = new File("src/application/application.css").toURI().toURL();
-			scene.getStylesheets().add(url.toExternalForm());
-	    	
-			
+		if (scene != null) {		
 	    	Stage primaryStage = Main.getPrimaryStage();
 	    	primaryStage.setScene(scene);
 	    	primaryStage.show();
-			
-			controller.initSession("user01", deckName);
 		} else {
 			System.out.println("No cards left to review in that deck");
 		}
