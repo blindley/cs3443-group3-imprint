@@ -11,7 +11,11 @@ import javafx.fxml.FXMLLoader;
 
 
 public class Main extends Application {
-	Stage primaryStage;
+	static Stage primaryStage;
+	
+	public static Stage getPrimaryStage() {
+		return primaryStage;
+	}
 	
 	@Override
 	public void start(Stage stage) {

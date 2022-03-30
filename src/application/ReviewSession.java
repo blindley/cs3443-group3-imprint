@@ -48,6 +48,10 @@ public class ReviewSession {
 		}
 	}
 	
+	public boolean hasNextCard() {
+		return progress.getNextDueCardId() != null;		
+	}
+	
 	public FlashCard getNextCard() {
 		String id = progress.getNextDueCardId();
 		FlashCard fc = deck.getCard(id);
