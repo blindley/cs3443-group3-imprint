@@ -62,9 +62,10 @@ public class DeckSelectionController implements Initializable {
 			URL url = new File("src/application/application.css").toURI().toURL();
 			scene.getStylesheets().add(url.toExternalForm());
 	    	
-	    	Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-	    	window.setScene(scene);
-	    	window.show();
+			
+	    	Stage primaryStage = Main.getPrimaryStage();
+	    	primaryStage.setScene(scene);
+	    	primaryStage.show();
 			
 			controller.initSession("user01", deckName);
 		} else {
