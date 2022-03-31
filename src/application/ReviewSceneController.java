@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
 public class ReviewSceneController implements Initializable {
@@ -17,6 +18,9 @@ public class ReviewSceneController implements Initializable {
 	public Button passButton;
 	public Button failButton;
 	public Button flipButton;
+	
+	@FXML
+    private FlowPane reviewControlsPane;
 	
 	ReviewSession session;
 	
@@ -29,6 +33,30 @@ public class ReviewSceneController implements Initializable {
 		if (currentCard != null) {
 			frontLabel.setText(currentCard.getFront());
 			backLabel.setText(currentCard.getBack());
+			
+			passButton = new Button();
+			passButton.setText("Pass");
+			passButton.setPrefWidth(80.0);
+			passButton.setOnAction(e -> {
+				onPassButtonPressed();
+			});
+			
+			failButton = new Button();
+			failButton.setText("Fail");
+			failButton.setPrefWidth(80.0);
+			failButton.setOnAction(e -> {
+				onFailButtonPressed();
+			});
+			
+			flipButton = new Button();
+			flipButton.setText("Flip");
+			flipButton.setPrefWidth(80.0);
+			flipButton.setOnAction(e -> {
+				onFlipButtonPressed();
+			});
+			
+			reviewControlsPane.getChildren().addAll(passButton, failButton, flipButton);			
+			
 			flipToFront();
 		} else {
 			System.out.println("No cards left to review today");

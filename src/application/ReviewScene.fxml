@@ -28,13 +28,7 @@
    <bottom>
       <AnchorPane prefHeight="40.0">
          <children>
-            <FlowPane alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Button fx:id="passButton" mnemonicParsing="false" onAction="#onPassButtonPressed" prefWidth="80.0" text="Pass" />
-                  <Button fx:id="failButton" mnemonicParsing="false" onAction="#onFailButtonPressed" prefWidth="80.0" text="Fail" />
-                  <Button fx:id="flipButton" mnemonicParsing="false" onAction="#onFlipButtonPressed" prefWidth="80.0" text="Flip" />
-               </children>
-            </FlowPane>
+            <FlowPane fx:id="reviewControlsPane" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <FlowPane alignment="CENTER" maxWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#onEndSessionButtonPressed" prefWidth="80.0" text="End Session" />
