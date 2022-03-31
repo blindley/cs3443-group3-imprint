@@ -56,7 +56,8 @@ public class ReviewSceneController implements Initializable {
 			session.save();
 			Main.setReviewSession(null);
 			
-			Scene scene = SceneLoader.loadDeckSelectionScene("user01");
+			String userName = Main.getUserName();			
+			Scene scene = SceneLoader.loadDeckSelectionScene(userName);
 			
 			Stage primaryStage = Main.getPrimaryStage();
 			primaryStage.setScene(scene);			
