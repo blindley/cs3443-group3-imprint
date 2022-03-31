@@ -6,9 +6,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
@@ -18,6 +20,7 @@ public class ReviewSceneController implements Initializable {
 	public Button passButton;
 	public Button failButton;
 	public Button flipButton;
+	Separator passAndFailSeparator;
 	
 	@FXML
     private FlowPane reviewControlsPane;
@@ -55,7 +58,10 @@ public class ReviewSceneController implements Initializable {
 				onFlipButtonPressed();
 			});
 			
-			reviewControlsPane.getChildren().addAll(passButton, failButton, flipButton);			
+			passAndFailSeparator = new Separator();
+			passAndFailSeparator.setPrefWidth(20.0);
+			
+//			reviewControlsPane.getChildren().addAll(passButton, failButton, flipButton);			
 			
 			flipToFront();
 		} else {
@@ -64,19 +70,17 @@ public class ReviewSceneController implements Initializable {
 	}
 	
 	private void flipToFront() {
-		passButton.setVisible(false);
-		failButton.setVisible(false);
 		backLabel.setVisible(false);
 		
-		flipButton.setVisible(true);
+		reviewControlsPane.getChildren().removeAll(failButton, passAndFailSeparator, passButton);
+		reviewControlsPane.getChildren().add(flipButton);
 	}
 	
 	private void flipToBack() {
-		passButton.setVisible(true);
-		failButton.setVisible(true);
 		backLabel.setVisible(true);
 		
-		flipButton.setVisible(false);		
+		reviewControlsPane.getChildren().remove(flipButton);
+		reviewControlsPane.getChildren().addAll(failButton, passAndFailSeparator, passButton);
 	}
 	
 	private void endSession() {
