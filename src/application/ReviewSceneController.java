@@ -6,21 +6,20 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class ReviewSceneController implements Initializable {
 	public Label frontLabel;
 	public Label backLabel;
-	public Button passButton;
-	public Button failButton;
 	public Button flipButton;
-	Separator passAndFailSeparator;
+	
+	HBox passFailButtonGroup;
 	
 	@FXML
     private FlowPane reviewControlsPane;
@@ -32,24 +31,9 @@ public class ReviewSceneController implements Initializable {
 		session = Main.getReviewSession();
 		
 		FlashCard currentCard = session.getNextCard();
-		// TODO: This shouldn't be necessary. I should be able to end the session, but getWindow() is returning null
 		if (currentCard != null) {
 			frontLabel.setText(currentCard.getFront());
 			backLabel.setText(currentCard.getBack());
-			
-			passButton = new Button();
-			passButton.setText("Pass");
-			passButton.setPrefWidth(80.0);
-			passButton.setOnAction(e -> {
-				onPassButtonPressed();
-			});
-			
-			failButton = new Button();
-			failButton.setText("Fail");
-			failButton.setPrefWidth(80.0);
-			failButton.setOnAction(e -> {
-				onFailButtonPressed();
-			});
 			
 			flipButton = new Button();
 			flipButton.setText("Flip");
@@ -58,10 +42,26 @@ public class ReviewSceneController implements Initializable {
 				onFlipButtonPressed();
 			});
 			
-			passAndFailSeparator = new Separator();
+			Button passButton = new Button();
+			passButton.setText("Pass");
+			passButton.setPrefWidth(80.0);
+			passButton.setOnAction(e -> {
+				onPassButtonPressed();
+			});
+			
+			Button failButton = new Button();
+			failButton.setText("Fail");
+			failButton.setPrefWidth(80.0);
+			failButton.setOnAction(e -> {
+				onFailButtonPressed();
+			});
+			
+			Separator passAndFailSeparator = new Separator();
+			passAndFailSeparator.setVisible(false);
 			passAndFailSeparator.setPrefWidth(20.0);
 			
-//			reviewControlsPane.getChildren().addAll(passButton, failButton, flipButton);			
+			passFailButtonGroup = new HBox();
+			passFailButtonGroup.getChildren().addAll(failButton, passAndFailSeparator, passButton);
 			
 			flipToFront();
 		} else {
@@ -72,7 +72,7 @@ public class ReviewSceneController implements Initializable {
 	private void flipToFront() {
 		backLabel.setVisible(false);
 		
-		reviewControlsPane.getChildren().removeAll(failButton, passAndFailSeparator, passButton);
+		reviewControlsPane.getChildren().remove(passFailButtonGroup);
 		reviewControlsPane.getChildren().add(flipButton);
 	}
 	
@@ -80,7 +80,7 @@ public class ReviewSceneController implements Initializable {
 		backLabel.setVisible(true);
 		
 		reviewControlsPane.getChildren().remove(flipButton);
-		reviewControlsPane.getChildren().addAll(failButton, passAndFailSeparator, passButton);
+		reviewControlsPane.getChildren().add(passFailButtonGroup);
 	}
 	
 	private void endSession() {
