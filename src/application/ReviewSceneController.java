@@ -27,6 +27,7 @@ public class ReviewSceneController implements Initializable {
 		if (currentCard != null) {
 			frontLabel.setText(currentCard.getFront());
 			backLabel.setText(currentCard.getBack());
+			flipToFront();
 		} else {
 			System.out.println("No cards left to review today");
 		}
