@@ -9,7 +9,9 @@ import javafx.scene.Scene;
 
 public class Main extends Application {
 	static Stage primaryStage;
+	
 	static ReviewSession reviewSession;
+	static String userName;
 	
 	public static Stage getPrimaryStage() {
 		return primaryStage;
@@ -21,6 +23,14 @@ public class Main extends Application {
 	
 	public static void setReviewSession(ReviewSession session) {
 		reviewSession = session;
+	}
+	
+	public static String getUserName() {
+		return userName;
+	}
+	
+	public static void setUserName(String newUserName) {
+		userName = newUserName;
 	}
 	
 	@Override

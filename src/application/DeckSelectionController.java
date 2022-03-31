@@ -44,8 +44,9 @@ public class DeckSelectionController implements Initializable {
 	
 	@FXML
     void onBeginSessionButtonClicked(ActionEvent event) throws IOException {
+		String userName = Main.getUserName();
 		String deckName = deckListView.getSelectionModel().getSelectedItem();
-		Scene scene = SceneLoader.loadReviewSessionScene("user01", deckName);
+		Scene scene = SceneLoader.loadReviewSessionScene(userName, deckName);
 		
 		if (scene != null) {		
 	    	Stage primaryStage = Main.getPrimaryStage();

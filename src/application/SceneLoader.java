@@ -11,6 +11,9 @@ import javafx.scene.Scene;
 public class SceneLoader {
 	
 	public static Scene loadDeckSelectionScene(String userName) throws IOException {
+		if (userName != null)
+			Main.setUserName(userName);
+		
 		URL url = new File("src/application/DeckSelectionScene.fxml").toURI().toURL();
 		Parent root = FXMLLoader.load(url);
 		Scene scene = new Scene(root, 600, 450);

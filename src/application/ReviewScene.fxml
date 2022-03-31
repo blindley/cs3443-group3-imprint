@@ -7,12 +7,31 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReviewSceneController">
-   <children>
-      <Button fx:id="passButton" layoutX="223.0" layoutY="348.0" mnemonicParsing="false" onAction="#onPassButtonPressed" text="Pass" visible="false" />
-      <Button fx:id="failButton" layoutX="300.0" layoutY="348.0" mnemonicParsing="false" onAction="#onFailButtonPressed" text="Fail" visible="false" />
-      <Label fx:id="frontLabel" layoutX="200.0" layoutY="75.0" text="Front of Card" />
-      <Label fx:id="backLabel" layoutX="200.0" layoutY="200.0" text="Back of Card" visible="false" />
-      <Button fx:id="flipButton" layoutX="267.0" layoutY="348.0" mnemonicParsing="false" onAction="#onFlipButtonPressed" text="Flip" />
-   </children>
-</AnchorPane>
+
+<BorderPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ReviewSceneController">
+   <center>
+      <VBox alignment="CENTER">
+         <children>
+            <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="frontLabel" text="Front of Card" />
+               </children>
+            </FlowPane>
+            <FlowPane alignment="CENTER" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label fx:id="backLabel" text="Back of Card" />
+               </children>
+            </FlowPane>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <FlowPane alignment="CENTER" prefHeight="40.0">
+         <children>
+            <Button fx:id="passButton" mnemonicParsing="false" onAction="#onPassButtonPressed" prefWidth="80.0" text="Pass" />
+            <Button fx:id="failButton" mnemonicParsing="false" onAction="#onFailButtonPressed" prefWidth="80.0" text="Fail" />
+            <Button fx:id="flipButton" mnemonicParsing="false" onAction="#onFlipButtonPressed" prefWidth="80.0" text="Flip" />
+         </children>
+      </FlowPane>
+   </bottom>
+</BorderPane>
