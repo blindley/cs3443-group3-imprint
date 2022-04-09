@@ -45,6 +45,7 @@ public class DeckSelectionController implements Initializable {
 		
 		deckListView.setItems(deckNameList);
 		deckInfoLabel.setText("");
+		deckInfoLabel.setWrapText(true);
 	}
 	
 	@FXML
