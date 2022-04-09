@@ -4,7 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -16,30 +16,42 @@ public class DeckProgress {
 	ArrayDeque<String> newCards;
 	PriorityQueue<CardProgress> reviewQueue;
 	
+	int maxNewCardsPerDay = 5;
+	int newCardsAddedToday;
+	
 	public DeckProgress() {
 		nextCard = null;
 		newCards = new ArrayDeque<String>();
 		reviewQueue = new PriorityQueue<CardProgress>(new CardProgressComparator());
+		
+		newCardsAddedToday = 0;
+	}
+	
+	private void addNewCardToReviewQueue() {
+		String nextNewCardId = newCards.poll();
+		if (nextNewCardId != null) {
+			nextCard = new CardProgress();
+			nextCard.cardId = nextNewCardId;
+			nextCard.interval = 0;
+			nextCard.dueDate = now();
+			
+			newCardsAddedToday++;
+		}
 	}
 	
 	private void updateNextCard() {
 		if (nextCard == null) {
 			CardProgress nextReviewCard = reviewQueue.peek();
 			if (nextReviewCard != null) {
-				LocalDate today = now();
+				LocalDateTime today = now();
 				if (nextReviewCard.dueDate.compareTo(today) <= 0) {
 					nextCard = reviewQueue.remove();
 					return;
 				}
 			}
 			
-			String nextNewCardId = newCards.poll();
-			if (nextNewCardId != null) {
-				nextCard = new CardProgress();
-				nextCard.cardId = nextNewCardId;
-				nextCard.interval = 0;
-				nextCard.dueDate = now();
-			}
+			if (newCardsAddedToday < maxNewCardsPerDay)			
+				addNewCardToReviewQueue();
 		}
 	}
 	
@@ -122,7 +134,7 @@ public class DeckProgress {
 				if (row[2].compareTo("new") == 0) {
 					newCards.add(id);
 				} else {
-					LocalDate dueDate = LocalDate.parse(row[2]);
+					LocalDateTime dueDate = LocalDateTime.parse(row[2]);
 					CardProgress cp = new CardProgress();
 					cp.cardId = id;
 					cp.interval = interval;
@@ -144,7 +156,7 @@ public class DeckProgress {
 		return "data/users/" + userName + "/" + deckName + ".csv";
 	}
 
-	private static LocalDate now() {
+	private static LocalDateTime now() {
 		// Used for simulating a different date, for testing the scheduling functionality
 		int dateOffset = 0;
 		String dateOffsetStr = Config.getValue("dateOffset");
@@ -152,14 +164,14 @@ public class DeckProgress {
 			dateOffset = Integer.parseInt(dateOffsetStr);
 		}
 		
-		return LocalDate.now().plusDays(dateOffset);
+		return LocalDateTime.now().plusDays(dateOffset);		
 	}
 }
 
 class CardProgress {
 	public String cardId;
 	public int interval;
-	public LocalDate dueDate;
+	public LocalDateTime dueDate;
 	
 	@Override
 	public String toString() {
