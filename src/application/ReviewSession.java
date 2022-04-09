@@ -10,7 +10,7 @@ public class ReviewSession {
 	String userName;
 	String deckName;
 	
-	public ReviewSession(String userName, String deckName) {
+	public ReviewSession(String userName, String deckName) throws IOException {
 		deck = new FlashCardDeck();
 		progress = new DeckProgress();
 		this.userName = userName;
@@ -20,11 +20,7 @@ public class ReviewSession {
 		
 		String deckFilename = "data/decks/" + deckName + ".csv";
 		
-		try {
-			cardData = CSVLoader.loadCSV(deckFilename);
-		} catch (IOException e) {
-			cardData = generateSampleCardData();
-		}
+		cardData = CSVLoader.loadCSV(deckFilename);
 		
 		for (int i = 0; i < cardData.size(); i++) {
 			String[] card = cardData.get(i);
@@ -69,30 +65,6 @@ public class ReviewSession {
 	
 	public void save() throws IOException {
 		progress.save(userName, deckName);
-	}
-	
-	static private ArrayList<String[]> generateSampleCardData() {
-		ArrayList<String[]> cardData = new ArrayList<String[]>();
-		
-		String[] sampleCardData = {
-			"What is the capital of France?", "Paris",
-			"What is the derivative of sin(x)?", "cos(x)",
-			"What is the opposite of left?", "right",
-			"What is the average distance from the Earth to the Sun", "93 million miles",
-			"How many letters are in the alphabet?", "26"
-		};
-
-		cardData = new ArrayList<String[]>();
-
-		for (int i = 0; i < sampleCardData.length / 2; i++) {
-			String[] row = new String[3];
-			row[0] = "" + i;
-			row[1] = sampleCardData[i * 2];
-			row[2] = sampleCardData[i * 2 + 1];
-			cardData.add(row);
-		}
-		
-		return cardData;
 	}
 }
 

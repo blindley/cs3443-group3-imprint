@@ -52,14 +52,19 @@ public class DeckSelectionController implements Initializable {
     void onBeginSessionButtonClicked(ActionEvent event) throws IOException {
 		String userName = Main.getUserName();
 		String deckName = deckListView.getSelectionModel().getSelectedItem();
-		Scene scene = SceneLoader.loadReviewSessionScene(userName, deckName);
 		
-		if (scene != null) {		
-	    	Stage primaryStage = Main.getPrimaryStage();
-	    	primaryStage.setScene(scene);
-	    	primaryStage.show();
+		if (deckName != null && !deckName.isEmpty()) {
+			Scene scene = SceneLoader.loadReviewSessionScene(userName, deckName);
+		
+			if (scene != null) {		
+		    	Stage primaryStage = Main.getPrimaryStage();
+		    	primaryStage.setScene(scene);
+		    	primaryStage.show();
+			} else {
+				deckInfoLabel.setText("No cards left to review in that deck");
+			}
 		} else {
-			deckInfoLabel.setText("No cards left to review in that deck");
+			deckInfoLabel.setText("No deck selected");
 		}
     }
     
