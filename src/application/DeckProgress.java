@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class DeckProgress {
 				nextCard.interval *= 2;
 			}
 			
-			nextCard.dueDate = now().plusDays(nextCard.interval);
+			nextCard.dueDate = today().plusDays(nextCard.interval);
 			reviewQueue.add(nextCard);
 			nextCard = null;
 		}
@@ -165,6 +166,15 @@ public class DeckProgress {
 		}
 		
 		return LocalDateTime.now().plusDays(dateOffset);		
+	}
+	
+	/**
+	 * Gets a LocalDateTime representing the beginning of the current day
+	 * 
+	 * @return
+	 */
+	private static LocalDateTime today() {
+		return LocalDate.now().atStartOfDay();
 	}
 }
 
