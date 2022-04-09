@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="803.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DeckSelectionController">
+
+<VBox prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.DeckSelectionController">
    <children>
-      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label text="Select a deck:" />
+      <HBox spacing="5.0" VBox.vgrow="ALWAYS">
          <children>
-            <Label text="Select a deck:" />
-            <ListView fx:id="deckListView" layoutX="213.0" layoutY="222.0" prefWidth="250.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <ListView fx:id="deckListView" prefWidth="250.0" />
+            <Label fx:id="deckInfoLabel" text="Label" />
          </children>
-      </VBox>
-      <Button layoutX="287.0" layoutY="389.0" mnemonicParsing="false" onAction="#onBeginSessionButtonClicked" text="Begin Session" />
+      </HBox>
+      <FlowPane>
+         <children>
+            <Button mnemonicParsing="false" onAction="#onBeginSessionButtonClicked" text="Begin Session">
+               <FlowPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </FlowPane.margin>
+            </Button>
+         </children>
+      </FlowPane>
    </children>
-</AnchorPane>
+</VBox>

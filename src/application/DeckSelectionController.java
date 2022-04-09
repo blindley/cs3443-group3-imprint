@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -19,6 +20,9 @@ public class DeckSelectionController implements Initializable {
 
     @FXML
     private ListView<String> deckListView;
+    
+    @FXML
+    private Label deckInfoLabel;
     
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -40,6 +44,7 @@ public class DeckSelectionController implements Initializable {
 		}
 		
 		deckListView.setItems(deckNameList);
+		deckInfoLabel.setText("");
 	}
 	
 	@FXML
@@ -53,7 +58,7 @@ public class DeckSelectionController implements Initializable {
 	    	primaryStage.setScene(scene);
 	    	primaryStage.show();
 		} else {
-			System.out.println("No cards left to review in that deck");
+			deckInfoLabel.setText("No cards left to review in that deck");
 		}
     }
     
