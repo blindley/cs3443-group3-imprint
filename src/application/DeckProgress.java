@@ -28,21 +28,25 @@ public class DeckProgress {
 		newCardsAddedToday = 0;
 	}
 	
-	private void addNewCardToReviewQueue() {
-		String nextNewCardId = newCards.poll();
-		if (nextNewCardId != null) {
-			nextCard = new CardProgress();
-			nextCard.cardId = nextNewCardId;
-			nextCard.interval = 0;
-			nextCard.dueDate = now();
-			
-			newCardsAddedToday++;
+	private void moveNewCardToReviewQueue() {
+		if (newCardsAddedToday < maxNewCardsPerDay) {
+			String nextNewCardId = newCards.poll();
+			if (nextNewCardId != null) {
+				CardProgress newCard = new CardProgress();
+				newCard.cardId = nextNewCardId;
+				newCard.interval = 0;
+				newCard.dueDate = now().minusNanos(10000000);
+				reviewQueue.add(newCard);
+				
+				newCardsAddedToday++;
+			}
 		}
 	}
 	
 	private void updateNextCard() {
 		if (nextCard == null) {
 			CardProgress nextReviewCard = reviewQueue.peek();
+			
 			if (nextReviewCard != null) {
 				LocalDateTime today = now();
 				if (nextReviewCard.dueDate.compareTo(today) <= 0) {
@@ -51,8 +55,16 @@ public class DeckProgress {
 				}
 			}
 			
-			if (newCardsAddedToday < maxNewCardsPerDay)			
-				addNewCardToReviewQueue();
+			moveNewCardToReviewQueue();
+			nextReviewCard = reviewQueue.peek();
+			
+			if (nextReviewCard != null) {
+				LocalDateTime today = now();
+				if (nextReviewCard.dueDate.compareTo(today) <= 0) {
+					nextCard = reviewQueue.remove();
+					return;
+				}
+			}
 		}
 	}
 	
@@ -67,7 +79,7 @@ public class DeckProgress {
 		return nextCard.cardId;
 	}
 	
-	public void passNextCard() {
+	public void passNextCard() {		
 		updateNextCard();
 		if (nextCard != null) {		
 			if (nextCard.interval == 0) {
@@ -83,6 +95,8 @@ public class DeckProgress {
 	}
 	
 	public void failNextCard() {
+		moveNewCardToReviewQueue();
+		
 		updateNextCard();
 		if (nextCard != null) {
 			nextCard.interval = 0;
@@ -167,12 +181,7 @@ public class DeckProgress {
 		
 		return LocalDateTime.now().plusDays(dateOffset);		
 	}
-	
-	/**
-	 * Gets a LocalDateTime representing the beginning of the current day
-	 * 
-	 * @return
-	 */
+
 	private static LocalDateTime today() {
 		return LocalDate.now().atStartOfDay();
 	}
