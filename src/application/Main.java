@@ -42,10 +42,10 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		Config.initialize();
-		if (Config.getValue("devMode").compareTo("true") == 0) {
-			System.out.println(Config.getAllConfigData());
-		}
+//		Config.initialize();
+//		if (Config.getValue("devMode").compareTo("true") == 0) {
+//			System.out.println(Config.getAllConfigData());
+//		}
 		
 		launch(args);
 		
