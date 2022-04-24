@@ -3,7 +3,6 @@ package application;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -49,6 +48,28 @@ public class SceneLoader {
 		URL url = new File("src/application/UserLogin.fxml").toURI().toURL();
 		AnchorPane root = FXMLLoader.load(url);
 		Scene scene = new Scene(root,550,400);
+		
+		return scene;
+	}
+	
+	public static Scene loadNewUserScene() throws IOException {
+		URL url = new File("src/application/NewUser.fxml").toURI().toURL();
+		AnchorPane root = FXMLLoader.load(url);
+		Scene scene = new Scene(root,625,450);
+		
+		return scene;
+	}
+	
+	public static Scene loadForgotPasswordScene() throws IOException {
+		URL url = new File("src/application/ForgotPassword.fxml").toURI().toURL();
+		FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(url);
+    	AnchorPane root = loader.load();
+		Scene scene = new Scene(root,625,450);
+		
+		//Intializing the ForgotPassword.fxml scene
+		UserLoginController fP = loader.getController();
+	    fP.setStart();
 		
 		return scene;
 	}

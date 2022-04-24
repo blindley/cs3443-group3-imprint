@@ -154,7 +154,7 @@ public class User {
 					{
 						if(usersInfo[1].equals(password))
 						{
-							System.out.println("Login Successful!");
+							//System.out.println("Login Successful!");
 							
 							return true;
 						}
@@ -197,8 +197,6 @@ public class User {
 						
 						Random rand = new Random();
 						int randNum = rand.nextInt(3);
-						
-						System.out.println(randNum);
 						
 						return questions[randNum];
 					}
