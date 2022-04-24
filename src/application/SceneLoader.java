@@ -9,7 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 public class SceneLoader {
-
+	/**
+	 * @param userName
+	 * @return
+	 * @throws IOException
+	 */
 	public static Scene loadDeckSelectionScene(String userName) throws IOException {
 		if (userName != null)
 			Main.setUserName(userName);
@@ -23,7 +27,12 @@ public class SceneLoader {
 
 		return scene;
 	}
-
+	/**
+	 * @param userName
+	 * @param deckName
+	 * @return
+	 * @throws IOException
+	 */
 	public static Scene loadReviewSessionScene(String userName, String deckName) throws IOException {
 		ReviewSession session = new ReviewSession(userName, deckName);
 
@@ -43,7 +52,10 @@ public class SceneLoader {
 			return null;
 		}
 	}
-
+	/**
+	 * @return
+	 * @throws IOException
+	 */
 	public static Scene loadUserLoginScene() throws IOException {
 		URL url = new File("src/application/UserLogin.fxml").toURI().toURL();
 		AnchorPane root = FXMLLoader.load(url);
@@ -51,7 +63,10 @@ public class SceneLoader {
 
 		return scene;
 	}
-
+	/**
+	 * @return
+	 * @throws IOException
+	 */
 	public static Scene loadNewUserScene() throws IOException {
 		URL url = new File("src/application/NewUser.fxml").toURI().toURL();
 		AnchorPane root = FXMLLoader.load(url);
@@ -59,7 +74,10 @@ public class SceneLoader {
 
 		return scene;
 	}
-
+	/**
+	 * @return
+	 * @throws IOException
+	 */
 	public static Scene loadForgotPasswordScene() throws IOException {
 		URL url = new File("src/application/ForgotPassword.fxml").toURI().toURL();
 		FXMLLoader loader = new FXMLLoader();
