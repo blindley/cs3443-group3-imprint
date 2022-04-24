@@ -19,20 +19,30 @@ public class User {
 	private String userInfoF;
 	private ArrayList<String> que;
 	private ArrayList<String> ans;
-
+	/**
+	 * @param user
+	 */
 	public User(String user) {
 		this.user = user;
 
 		userInfoF = "userInfo.txt";
 	}
-
+	/**
+	 * @param user
+	 * @param password
+	 */
 	public User(String user, String password) {
 		this.user = user;
 		this.password = hashUser(password, "SHA-512");
 
 		userInfoF = "userInfo.txt";
 	}
-
+	/**
+	 * @param user
+	 * @param password
+	 * @param que
+	 * @param ans
+	 */
 	public User(String user, String password, ArrayList<String> que, ArrayList<String> ans) {
 		this.user = user;
 		this.password = hashUser(password, "SHA-512");
@@ -44,7 +54,11 @@ public class User {
 		this.ans = ans;
 		userInfoF = "userInfo.txt";
 	}
-
+	/**
+	 * @param content
+	 * @param algo
+	 * @return
+	 */
 	public String hashUser(String content, String algo) {
 		String hashedContent = "";
 
@@ -62,6 +76,9 @@ public class User {
 		return hashedContent;
 	}
 
+	/**
+	 * @throws Exception
+	 */
 	public void newAddition() throws Exception {
 		if (userPresent()) {
 			throw new Exception(
@@ -84,7 +101,9 @@ public class User {
 			}
 		}
 	}
-
+	/**
+	 * @return
+	 */
 	public boolean userPresent() {
 		String currentName = "";
 		String[] usersInfo;
@@ -107,7 +126,10 @@ public class User {
 
 		return false;
 	}
-
+	/**
+	 * @return
+	 * @throws Exception
+	 */
 	public boolean userVerification() throws Exception {
 
 		if (!userPresent()) {
@@ -142,7 +164,10 @@ public class User {
 
 		return false;
 	}
-
+	/**
+	 * @return
+	 * @throws IOException
+	 */
 	public String randQuestion() throws IOException {
 
 		String selectedUser = "";
@@ -173,7 +198,13 @@ public class User {
 		return "";
 
 	}
-
+	/**
+	 * @param que
+	 * @param ans
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public boolean verifyAnswer(String que, String ans) throws FileNotFoundException, IOException {
 		String selectedUser = "";
 		String[] usersInfo;
@@ -213,7 +244,9 @@ public class User {
 
 		return false;
 	}
-
+	/**
+	 * @param password
+	 */
 	public void newPassword(String password) {
 		String selectedUser = "";
 		String[] usersInfo;
@@ -260,19 +293,27 @@ public class User {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * @return
+	 */
 	public String getUser() {
 		return user;
 	}
-
+	/**
+	 * @param user
+	 */
 	public void setUser(String user) {
 		this.user = user;
 	}
-
+	/**
+	 * @return
+	 */
 	public String getPassword() {
 		return password;
 	}
-
+	/**
+	 * @param password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
