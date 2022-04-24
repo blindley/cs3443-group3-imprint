@@ -107,13 +107,82 @@ public class UserLoginController {
     
     
     @FXML
-    void validateUser(ActionEvent event) {
+    void validateUser(ActionEvent event) throws IOException {
 
+    	try {
+    		
+    		if(userField.getText().isEmpty() || passwrdField.getText().isEmpty() || passwrdConfirmation.getText().isEmpty())
+			{
+    			throw new Exception("One or more fields is empty. Please fill out all fields to create an account.");
+			}
+    		
+    		if(q1Field.getText().isEmpty() || q2Field.getText().isEmpty() || q3Field.getText().isEmpty())
+			{
+    			throw new Exception("One or more fields is empty. Please fill out all fields to create an account.");
+			}
+    		
+    		if(q1.getText().equals("Select a Question") || q2.getText().equals("Select a Question") || q3.getText().equals("Select a Question"))
+    		{
+    			throw new Exception("Please select a question for all three entries.");
+    		}
+    		
+    		if(!userField.getText().matches("^[a-zA-Z0-9]{1}[a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]*[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]?@[a-zA-Z0-9]{1}"
+    		  + "[a-zA-Z0-9.\\-]*[a-zA-Z0-9]{1}\\.[a-zA-Z0-9]{2,}$")) {
+    			throw new Exception("Invalid email. Please follow common email format and try again.");
+    		}
+    		
+    		if(passwrdField.getText().length() < 8)
+    		{
+    			throw new Exception("Please insert a minimum password length of 8 characters.");
+    		}
+    		
+    		for(int i = 0; i < passwrdField.getText().length();i++)
+    		{
+    			if((int)passwrdField.getText().charAt(i) < 32 || (int)passwrdField.getText().charAt(i) > 126)
+    			{
+    				throw new Exception("Invalid character used in password: " + passwrdField.getText().charAt(i) +
+    									". Please use standard ASCII characters.");
+    			}
+    		}
+    		
+    		if(!passwrdConfirmation.getText().equals(passwrdField.getText()))
+    		{
+    			throw new Exception("The passwords entered do no match. Please try again.");
+    		}
+    		
+    		ArrayList<String> questions = new ArrayList<String>();
+    		questions.add(q1.getText());
+    		questions.add(q2.getText());
+    		questions.add(q3.getText());
+    		
+    		ArrayList<String> ans = new ArrayList<String>();
+    		ans.add(q1Field.getText());
+    		ans.add(q2Field.getText());
+    		ans.add(q3Field.getText());
+    		
+    		User u = new User(userField.getText(), passwrdField.getText(),questions,ans);
+    		
+    		u.newAddition();
+    		
+    		Alert success = new Alert(AlertType.INFORMATION);
+    		
+    		success.setTitle("Profile Created");
+    		success.setHeaderText("Succesfully created an account for: " + u.getUser());
+    		success.setContentText("You can now login from the home screen.");
+    		success.showAndWait();
+    		
+    		Stage stage = Main.getPrimaryStage();
+			Scene scene = SceneLoader.loadUserLoginScene();
+			
+			stage.setScene(scene);
+    	}
+    	catch(Exception e) {
+    		errorDisplay.setText(e.getMessage());
+    	}
     }
 
     
-    
-
+   
     public void initialToggle() {
     	
     	sq1_1.setToggleGroup(securityQuestions1);
@@ -135,6 +204,7 @@ public class UserLoginController {
     	sq5_3.setToggleGroup(securityQuestions3);
     
     }
+    
     @FXML
     void sqSelect(ActionEvent event) {
     	
@@ -302,8 +372,11 @@ public class UserLoginController {
     }
     
     @FXML
-    void home_screen(ActionEvent event) {
-
+    void home_screen(ActionEvent event) throws IOException {
+    	Stage stage = Main.getPrimaryStage();
+		Scene scene = SceneLoader.loadUserLoginScene();
+		
+		stage.setScene(scene);
     }
 	
 
