@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import application.User;
 //import application.model.User;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -41,7 +42,26 @@ public class UserLoginController {
 
     @FXML
     void verifyUser(ActionEvent event) {
-
+    	
+    	try {
+    		
+    		if(userField.getText().isEmpty() || passwrdField.getText().isEmpty())
+			{
+    			throw new Exception("One or more fields is empty. Please fill out all fields to login.");
+			}
+    		else
+    		{
+    			User login = new User(userField.getText(), passwrdField.getText());
+    			
+    			login.userVerification();
+    		}
+    		
+    		
+    	}
+    	catch(Exception e)
+    	{
+    		System.out.println(e.getMessage());
+    	}
     }
 
     @FXML
