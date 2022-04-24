@@ -11,23 +11,33 @@ public class Main extends Application {
 
 	static ReviewSession reviewSession;
 	static String userName;
-
+	/**
+	 * @return the primary stage for scenebuilder
+	 */
 	public static Stage getPrimaryStage() {
 		return primaryStage;
 	}
-
+	/**
+	 * @return The review session for the cards
+	 */
 	public static ReviewSession getReviewSession() {
 		return reviewSession;
 	}
-
+	/**
+	 * @param session
+	 */
 	public static void setReviewSession(ReviewSession session) {
 		reviewSession = session;
 	}
-
+	/**
+	 * @return the username for the user
+	 */
 	public static String getUserName() {
 		return userName;
 	}
-
+	/**
+	 * @param newUserName when the user creates a new username
+	 */
 	public static void setUserName(String newUserName) {
 		userName = newUserName;
 	}
@@ -42,7 +52,9 @@ public class Main extends Application {
 		primaryStage.setTitle("ImprinT");
 		primaryStage.show();
 	}
-
+	/**
+	 * @param args the main string
+	 */
 	public static void main(String[] args) {
 
 		launch(args);
