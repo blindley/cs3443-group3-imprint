@@ -133,6 +133,11 @@ public class DeckProgress {
 		File file = new File(path);
 		file.getParentFile().mkdirs();
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+
+			String mostRecentSessionInfo = "#mostRecentSession," + today() + "," + newCardsAddedToday;
+			writer.write(mostRecentSessionInfo);
+			writer.newLine();
+
 			if (nextCard != null) {
 				writer.write(nextCard.toString());
 				writer.newLine();
@@ -171,7 +176,14 @@ public class DeckProgress {
 		TreeSet<String> cardIds = deck.getCardIds();
 
 		for (String[] row : csvContent) {
-			if (row[0].equals("#cardProgress")) {
+			if (row[0].equals("#mostRecentSession")) {
+				LocalDateTime mostRecentSessionDate = LocalDateTime.parse(row[1]);
+				if (mostRecentSessionDate.compareTo(today()) >= 0) {
+					newCardsAddedToday = Integer.parseInt(row[2]);
+				} else {
+					newCardsAddedToday = 0;
+				}
+			} else if (row[0].equals("#cardProgress")) {
 				String id = row[1];
 				int interval = Integer.parseInt(row[2]);
 				if (row[3].compareTo("new") == 0) {
