@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="610.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.UserLoginController">
+   <children>
+      <Label alignment="CENTER" layoutX="8.0" layoutY="14.0" prefHeight="22.0" prefWidth="80.0" text="ImprinT" textFill="#2f6a90">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="userField" layoutX="24.0" layoutY="65.0" prefHeight="25.0" prefWidth="174.0" />
+      <PasswordField fx:id="passwrdField" layoutX="24.0" layoutY="121.0" prefHeight="25.0" prefWidth="174.0" />
+      <Label layoutX="24.0" layoutY="48.0" text="Username:" />
+      <Label layoutX="26.0" layoutY="104.0" text="Password:" />
+      <Label layoutX="24.0" layoutY="158.0" text="Confirm Password:" />
+      <PasswordField fx:id="passwrdConfirmation" layoutX="24.0" layoutY="175.0" prefHeight="25.0" prefWidth="174.0" />
+      <Label layoutX="378.0" layoutY="57.0" text="Question 1 :" />
+      <Label layoutX="378.0" layoutY="154.0" text="Question 2 :" />
+      <Label layoutX="382.0" layoutY="245.0" text="Question 3 : " />
+      <TextField fx:id="q1Field" layoutX="375.0" layoutY="116.0" prefHeight="25.0" prefWidth="192.0" />
+      <TextField fx:id="q2Field" layoutX="375.0" layoutY="208.0" prefHeight="25.0" prefWidth="192.0" />
+      <TextField fx:id="q3Field" layoutX="375.0" layoutY="301.0" prefHeight="25.0" prefWidth="192.0" />
+      <Label alignment="CENTER" layoutX="372.0" layoutY="14.0" prefHeight="22.0" prefWidth="141.0" text="Security Questions:" textFill="#2f6a90">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="266.0" layoutY="359.0" mnemonicParsing="false" onAction="#validateUser" prefHeight="27.0" prefWidth="56.0" text="Submit" />
+      <Label fx:id="errorDisplay" alignment="CENTER" layoutX="7.0" layoutY="334.0" prefHeight="17.0" prefWidth="590.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <MenuButton fx:id="q1" layoutX="378.0" layoutY="77.0" mnemonicParsing="false" text="Select a Question">
+        <items>
+            <RadioMenuItem fx:id="sq1_1" mnemonicParsing="false" onAction="#sqSelect" text="In what city were you born?" />
+            <RadioMenuItem fx:id="sq2_1" mnemonicParsing="false" onAction="#sqSelect" text="What is the name of your favorite pet?" />
+            <RadioMenuItem fx:id="sq3_1" mnemonicParsing="false" onAction="#sqSelect" text="What is the name of your first school?" />
+            <RadioMenuItem fx:id="sq4_1" mnemonicParsing="false" onAction="#sqSelect" text="What high school did you attend?" />
+            <RadioMenuItem fx:id="sq5_1" mnemonicParsing="false" onAction="#sqSelect" text="What is your mother's maiden name?" />
+        </items>
+      </MenuButton>
+      <MenuButton fx:id="q2" layoutX="378.0" layoutY="174.0" mnemonicParsing="false" text="Select a Question">
+         <items>
+            <RadioMenuItem fx:id="sq1_2" mnemonicParsing="false" onAction="#sqSelect" text="In what city were you born?" />
+            <RadioMenuItem fx:id="sq2_2" mnemonicParsing="false" onAction="#sqSelect" text="What is the name of your favorite pet?" />
+            <RadioMenuItem fx:id="sq3_2" mnemonicParsing="false" onAction="#sqSelect" text="What is the name of your first school?" />
+            <RadioMenuItem fx:id="sq4_2" mnemonicParsing="false" onAction="#sqSelect" text="What high school did you attend?" />
+            <RadioMenuItem fx:id="sq5_2" mnemonicParsing="false" onAction="#sqSelect" text="What is your mother's maiden name?" />
+         </items>
+      </MenuButton>
+      <MenuButton fx:id="q3" layoutX="378.0" layoutY="264.0" mnemonicParsing="false" text="Select a Question">
+         <items>
+            <RadioMenuItem fx:id="sq1_3" mnemonicParsing="false" onAction="#sqSelect" text="In what city were you born?" />
+            <RadioMenuItem fx:id="sq2_3" mnemonicParsing="false" onAction="#sqSelect" text="What is the name of your favorite pet?" />
+            <RadioMenuItem fx:id="sq3_3" mnemonicParsing="false" onAction="#sqSelect" text="What is the name of your first school?" />
+            <RadioMenuItem fx:id="sq4_3" mnemonicParsing="false" onAction="#sqSelect" text="What high school did you attend?" />
+            <RadioMenuItem fx:id="sq5_3" mnemonicParsing="false" onAction="#sqSelect" text="What is your mother's maiden name?" />
+         </items>
+      </MenuButton>
+      <Button layoutX="543.0" layoutY="13.0" mnemonicParsing="false" onAction="#home_screen" text="Home" />
+   </children>
+</AnchorPane>

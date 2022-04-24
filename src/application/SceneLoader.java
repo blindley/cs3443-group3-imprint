@@ -53,5 +53,13 @@ public class SceneLoader {
 		return scene;
 	}
 	
+	public static Scene loadNewUserScene() throws IOException {
+		URL url = new File("src/application/NewUser.fxml").toURI().toURL();
+		AnchorPane root = FXMLLoader.load(url);
+		Scene scene = new Scene(root,625,450);
+		
+		return scene;
+	}
+	
 	
 }
