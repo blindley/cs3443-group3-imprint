@@ -19,7 +19,11 @@ public class DeckProgress {
 	
 	int maxNewCardsPerDay = 5;
 	int newCardsAddedToday;
-	
+	/**
+	 
+	 *  Adds 5 cards per day for each session
+	 *  
+	 */
 	public DeckProgress() {
 		nextCard = null;
 		newCards = new ArrayDeque<String>();
@@ -71,14 +75,18 @@ public class DeckProgress {
 	void addNewCard(String id) {
 		newCards.add(id);
 	}
-	
+	/**
+	 * @return
+	 */
 	public String getNextDueCardId() {
 		updateNextCard();
 		if (nextCard == null) { return null; }
 		
 		return nextCard.cardId;
 	}
-	
+	/**
+	 *  Each card passed has an ID and interval it gets pulled by
+	 */
 	public void passNextCard() {		
 		updateNextCard();
 		if (nextCard != null) {		
@@ -94,6 +102,9 @@ public class DeckProgress {
 		}
 	}
 	
+	/**
+	 * When the user fails a card it gets moved to the back of the queue until the user passes the card
+	 */
 	public void failNextCard() {
 		moveNewCardToReviewQueue();
 		
@@ -105,7 +116,11 @@ public class DeckProgress {
 			nextCard = null;
 		}
 	}
-	
+	/**
+	 * @param userName
+	 * @param deckName
+	 * @throws IOException
+	 */
 	public void save(String userName, String deckName) throws IOException {
 		String path = buildProgressFilePath(userName, deckName);
 		File file = new File(path);
@@ -128,7 +143,12 @@ public class DeckProgress {
 			}
 		}
 	}
-	
+	/**
+	 * @param userName
+	 * @param deckName
+	 * @param deck
+	 * @throws IOException
+	 */
 	public void load(String userName, String deckName, FlashCardDeck deck) throws IOException {
 		ArrayList<String[]> csvContent;
 		String path = buildProgressFilePath(userName, deckName);
