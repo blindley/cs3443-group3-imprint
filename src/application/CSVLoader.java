@@ -4,8 +4,17 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * @author Benlindley, Ernestopalo, JohnOran, MichaelAlbeth
+ *
+ */
 public class CSVLoader {
+	/**
+	 * @param filename
+	 * @return
+	 * @throws IOException
+	 */
+	
 	public static ArrayList<String[]> loadCSV(String filename) throws IOException {
 		try (
 			BufferedReader reader = new BufferedReader(new FileReader(filename))
