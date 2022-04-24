@@ -18,54 +18,56 @@ import javafx.stage.Stage;
 
 public class DeckSelectionController implements Initializable {
 
-    @FXML
-    private ListView<String> deckListView;
-    
-    @FXML
-    private Label deckInfoLabel;
-    
+	@FXML
+	private ListView<String> deckListView;
+
+	@FXML
+	private Label deckInfoLabel;
+
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		File deckDirectory = new File("data/decks");
-		
+
 		FilenameFilter filter = new FilenameFilter() {
 			@Override
-			public boolean accept(File dir, String name) { return name.endsWith(".csv"); }			
+			public boolean accept(File dir, String name) {
+				return name.endsWith(".csv");
+			}
 		};
-		
+
 		File[] deckFileList = deckDirectory.listFiles(filter);
 		ObservableList<String> deckNameList = FXCollections.observableArrayList();
-		
+
 		for (int i = 0; i < deckFileList.length; i++) {
 			String deckName = deckFileList[i].getName();
 			int end = deckName.lastIndexOf(".csv");
 			deckName = deckName.substring(0, end);
-			deckNameList.add(deckName); 
+			deckNameList.add(deckName);
 		}
-		
+
 		deckListView.setItems(deckNameList);
 		deckInfoLabel.setText("");
 		deckInfoLabel.setWrapText(true);
 	}
-	
+
 	@FXML
-    void onBeginSessionButtonClicked(ActionEvent event) throws IOException {
+	void onBeginSessionButtonClicked(ActionEvent event) throws IOException {
 		String userName = Main.getUserName();
 		String deckName = deckListView.getSelectionModel().getSelectedItem();
-		
+
 		if (deckName != null && !deckName.isEmpty()) {
 			Scene scene = SceneLoader.loadReviewSessionScene(userName, deckName);
-		
-			if (scene != null) {		
-		    	Stage primaryStage = Main.getPrimaryStage();
-		    	primaryStage.setScene(scene);
-		    	primaryStage.show();
+
+			if (scene != null) {
+				Stage primaryStage = Main.getPrimaryStage();
+				primaryStage.setScene(scene);
+				primaryStage.show();
 			} else {
 				deckInfoLabel.setText("No cards left to review in that deck");
 			}
 		} else {
 			deckInfoLabel.setText("No deck selected");
 		}
-    }
-    
+	}
+
 }

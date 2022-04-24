@@ -16,22 +16,23 @@ public class DeckProgress {
 	CardProgress nextCard;
 	ArrayDeque<String> newCards;
 	PriorityQueue<CardProgress> reviewQueue;
-	
+
 	int maxNewCardsPerDay = 5;
 	int newCardsAddedToday;
+
 	/**
-	 
-	 *  Adds 5 cards per day for each session
-	 *  
+	 * 
+	 * Adds 5 cards per day for each session
+	 * 
 	 */
 	public DeckProgress() {
 		nextCard = null;
 		newCards = new ArrayDeque<String>();
 		reviewQueue = new PriorityQueue<CardProgress>(new CardProgressComparator());
-		
+
 		newCardsAddedToday = 0;
 	}
-	
+
 	private void moveNewCardToReviewQueue() {
 		if (newCardsAddedToday < maxNewCardsPerDay) {
 			String nextNewCardId = newCards.poll();
@@ -41,16 +42,16 @@ public class DeckProgress {
 				newCard.interval = 0;
 				newCard.dueDate = now().minusNanos(10000000);
 				reviewQueue.add(newCard);
-				
+
 				newCardsAddedToday++;
 			}
 		}
 	}
-	
+
 	private void updateNextCard() {
 		if (nextCard == null) {
 			CardProgress nextReviewCard = reviewQueue.peek();
-			
+
 			if (nextReviewCard != null) {
 				LocalDateTime today = now();
 				if (nextReviewCard.dueDate.compareTo(today) <= 0) {
@@ -58,10 +59,10 @@ public class DeckProgress {
 					return;
 				}
 			}
-			
+
 			moveNewCardToReviewQueue();
 			nextReviewCard = reviewQueue.peek();
-			
+
 			if (nextReviewCard != null) {
 				LocalDateTime today = now();
 				if (nextReviewCard.dueDate.compareTo(today) <= 0) {
@@ -71,43 +72,48 @@ public class DeckProgress {
 			}
 		}
 	}
-	
+
 	void addNewCard(String id) {
 		newCards.add(id);
 	}
+
 	/**
 	 * @return
 	 */
 	public String getNextDueCardId() {
 		updateNextCard();
-		if (nextCard == null) { return null; }
-		
+		if (nextCard == null) {
+			return null;
+		}
+
 		return nextCard.cardId;
 	}
+
 	/**
-	 *  Each card passed has an ID and interval it gets pulled by
+	 * Each card passed has an ID and interval it gets pulled by
 	 */
-	public void passNextCard() {		
+	public void passNextCard() {
 		updateNextCard();
-		if (nextCard != null) {		
+		if (nextCard != null) {
 			if (nextCard.interval == 0) {
 				nextCard.interval = 1;
 			} else {
 				nextCard.interval *= 2;
 			}
-			
+
 			nextCard.dueDate = today().plusDays(nextCard.interval);
 			reviewQueue.add(nextCard);
 			nextCard = null;
 		}
 	}
-	
+
 	/**
-	 * When the user fails a card it gets moved to the back of the queue until the user passes the card
+	 * When the user fails a card it gets moved to the back of the queue until the
+	 * user passes the card
 	 */
 	public void failNextCard() {
 		moveNewCardToReviewQueue();
-		
+
 		updateNextCard();
 		if (nextCard != null) {
 			nextCard.interval = 0;
@@ -116,6 +122,7 @@ public class DeckProgress {
 			nextCard = null;
 		}
 	}
+
 	/**
 	 * @param userName
 	 * @param deckName
@@ -130,12 +137,12 @@ public class DeckProgress {
 				writer.write(nextCard.toString());
 				writer.newLine();
 			}
-			
+
 			for (CardProgress cp : reviewQueue) {
 				writer.write(cp.toString());
 				writer.newLine();
 			}
-			
+
 			for (String cardId : newCards) {
 				String line = cardId + ",0," + "new";
 				writer.write(line);
@@ -143,6 +150,7 @@ public class DeckProgress {
 			}
 		}
 	}
+
 	/**
 	 * @param userName
 	 * @param deckName
@@ -152,16 +160,16 @@ public class DeckProgress {
 	public void load(String userName, String deckName, FlashCardDeck deck) throws IOException {
 		ArrayList<String[]> csvContent;
 		String path = buildProgressFilePath(userName, deckName);
-		
+
 		File file = new File(path);
 		if (file.exists() && file.isFile()) {
-			csvContent = CSVLoader.loadCSV(path);			
+			csvContent = CSVLoader.loadCSV(path);
 		} else {
 			csvContent = new ArrayList<String[]>();
 		}
-		
+
 		TreeSet<String> cardIds = deck.getCardIds();
-		
+
 		for (String[] row : csvContent) {
 			if (row.length >= 3) {
 				String id = row[0];
@@ -176,26 +184,27 @@ public class DeckProgress {
 					cp.dueDate = dueDate;
 					reviewQueue.add(cp);
 				}
-				
+
 				cardIds.remove(id);
 			}
 		}
-		
+
 		// add all remaining card ids
 		for (String id : cardIds) {
 			newCards.add(id);
 		}
 	}
-	
+
 	private static String buildProgressFilePath(String userName, String deckName) {
 		return "data/users/" + userName + "/" + deckName + ".csv";
 	}
 
 	private static LocalDateTime now() {
-		// Used for simulating a different date, for testing the scheduling functionality
+		// Used for simulating a different date, for testing the scheduling
+		// functionality
 		int dateOffset = 0;
-		
-		return LocalDateTime.now().plusDays(dateOffset);		
+
+		return LocalDateTime.now().plusDays(dateOffset);
 	}
 
 	private static LocalDateTime today() {
@@ -207,7 +216,7 @@ class CardProgress {
 	public String cardId;
 	public int interval;
 	public LocalDateTime dueDate;
-	
+
 	@Override
 	public String toString() {
 		return cardId + "," + interval + "," + dueDate;
@@ -221,13 +230,13 @@ class CardProgressComparator implements Comparator<CardProgress> {
 		int result = arg0.dueDate.compareTo(arg1.dueDate);
 		if (result == 0) {
 			result = arg0.interval - arg1.interval;
-			
+
 			if (result == 0) {
 				result = arg0.cardId.compareTo(arg1.cardId);
 			}
-		}		
-		
+		}
+
 		return result;
 	}
-	
+
 }
