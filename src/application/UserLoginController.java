@@ -101,15 +101,162 @@ public class UserLoginController {
     @FXML
     private PasswordField passwrdField;
 
-
+    ToggleGroup securityQuestions1 = new ToggleGroup();
+    ToggleGroup securityQuestions2 = new ToggleGroup();
+    ToggleGroup securityQuestions3 = new ToggleGroup();
+    
+    
     @FXML
     void validateUser(ActionEvent event) {
 
     }
 
+    
+    
+
+    public void initialToggle() {
+    	
+    	sq1_1.setToggleGroup(securityQuestions1);
+    	sq2_1.setToggleGroup(securityQuestions1);
+    	sq3_1.setToggleGroup(securityQuestions1);
+    	sq4_1.setToggleGroup(securityQuestions1);
+    	sq5_1.setToggleGroup(securityQuestions1);
+    	
+    	sq1_2.setToggleGroup(securityQuestions2);
+    	sq2_2.setToggleGroup(securityQuestions2);
+    	sq3_2.setToggleGroup(securityQuestions2);
+    	sq4_2.setToggleGroup(securityQuestions2);
+    	sq5_2.setToggleGroup(securityQuestions2);
+    	
+    	sq1_3.setToggleGroup(securityQuestions3);
+    	sq2_3.setToggleGroup(securityQuestions3);
+    	sq3_3.setToggleGroup(securityQuestions3);
+    	sq4_3.setToggleGroup(securityQuestions3);
+    	sq5_3.setToggleGroup(securityQuestions3);
+    
+    }
     @FXML
     void sqSelect(ActionEvent event) {
-
+    	
+    	initialToggle();
+    	ObservableList<MenuItem> listOfQ1 = sq2_1.getParentPopup().getItems();
+		ObservableList<MenuItem> listOfQ2 = sq2_2.getParentPopup().getItems();
+		ObservableList<MenuItem> listOfQ3 = sq2_3.getParentPopup().getItems();
+		
+		int currentSubQ = 0;
+		String questionNum = ((RadioMenuItem) event.getSource()).getId();
+		
+		for(int ndx = 0; ndx < listOfQ1.size(); ndx++)
+		{
+			if(listOfQ1.get(ndx).getId().substring(2,3).equalsIgnoreCase(questionNum.substring(2,3)))
+			{
+				currentSubQ = ndx;
+			}
+		}
+    	
+    	
+    	questionNum = questionNum.substring(questionNum.length()-1);
+    	
+    	if(questionNum.equals("1"))
+    	{
+    		if(q1.getText().equals("Select a Question"))
+	    	{
+    			q1.setText(listOfQ1.get(currentSubQ).getText());
+	    		
+    			listOfQ1.get(currentSubQ).setVisible(false);
+    			listOfQ2.get(currentSubQ).setVisible(false);
+    			listOfQ3.get(currentSubQ).setVisible(false);
+	    		
+	    	}
+    		else
+    		{
+    			
+    			for(int ndx = 0; ndx < listOfQ1.size(); ndx++)
+    			{
+    				if(listOfQ1.get(ndx).getText().equalsIgnoreCase(q1.getText()))
+    				{
+    					listOfQ1.get(ndx).setVisible(true);
+    					listOfQ2.get(ndx).setVisible(true);
+    					listOfQ3.get(ndx).setVisible(true);
+    				}
+    			}
+    			
+    			q1.setText(listOfQ1.get(currentSubQ).getText());
+	    		
+    			listOfQ1.get(currentSubQ).setVisible(false);
+    			listOfQ2.get(currentSubQ).setVisible(false);
+    			listOfQ3.get(currentSubQ).setVisible(false);
+    			
+    			
+    		}
+    		
+    	}
+    	else if(questionNum.equals("2"))
+    	{
+    		if(q2.getText().equals("Select a Question"))
+	    	{
+    			q2.setText(listOfQ1.get(currentSubQ).getText());
+	    		
+    			listOfQ1.get(currentSubQ).setVisible(false);
+    			listOfQ2.get(currentSubQ).setVisible(false);
+    			listOfQ3.get(currentSubQ).setVisible(false);
+	    		
+	    	}
+    		else
+    		{
+    			
+    			for(int ndx = 0; ndx < listOfQ1.size(); ndx++)
+    			{
+    				if(listOfQ1.get(ndx).getText().equalsIgnoreCase(q2.getText()))
+    				{
+    					listOfQ1.get(ndx).setVisible(true);
+    					listOfQ2.get(ndx).setVisible(true);
+    					listOfQ3.get(ndx).setVisible(true);
+    				}
+    			}
+    			
+    			q2.setText(listOfQ1.get(currentSubQ).getText());
+	    		
+    			listOfQ1.get(currentSubQ).setVisible(false);
+    			listOfQ2.get(currentSubQ).setVisible(false);
+    			listOfQ3.get(currentSubQ).setVisible(false);
+    			
+    			
+    		}
+    	}
+    	else
+    	{
+    		if(q3.getText().equals("Select a Question"))
+	    	{
+    			q3.setText(listOfQ1.get(currentSubQ).getText());
+	    		
+    			listOfQ1.get(currentSubQ).setVisible(false);
+    			listOfQ2.get(currentSubQ).setVisible(false);
+    			listOfQ3.get(currentSubQ).setVisible(false);
+	    		
+	    	}
+    		else
+    		{
+    			
+    			for(int ndx = 0; ndx < listOfQ1.size(); ndx++)
+    			{
+    				if(listOfQ1.get(ndx).getText().equalsIgnoreCase(q3.getText()))
+    				{
+    					listOfQ1.get(ndx).setVisible(true);
+    					listOfQ2.get(ndx).setVisible(true);
+    					listOfQ3.get(ndx).setVisible(true);
+    				}
+    			}
+    			
+    			q3.setText(listOfQ1.get(currentSubQ).getText());
+	    		
+    			listOfQ1.get(currentSubQ).setVisible(false);
+    			listOfQ2.get(currentSubQ).setVisible(false);
+    			listOfQ3.get(currentSubQ).setVisible(false);
+    			
+    			
+    		}
+    	}
     }
     
     @FXML
