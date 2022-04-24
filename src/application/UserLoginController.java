@@ -54,6 +54,13 @@ public class UserLoginController {
     			User login = new User(userField.getText(), passwrdField.getText());
     			
     			login.userVerification();
+    			
+    			Stage stage = Main.getPrimaryStage();
+    			Scene scene = SceneLoader.loadDeckSelectionScene(login.getUser());
+    			
+    			stage.setScene(scene);
+    			
+    			System.out.println("Hello");
     		}
     		
     		
