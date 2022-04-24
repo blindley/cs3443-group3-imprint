@@ -7,6 +7,7 @@ import java.net.URL;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 
 public class SceneLoader {
 	
@@ -43,4 +44,14 @@ public class SceneLoader {
 			return null;
 		}
 	}
+	
+	public static Scene loadUserLoginScene() throws IOException {
+		URL url = new File("src/application/UserLogin.fxml").toURI().toURL();
+		AnchorPane root = FXMLLoader.load(url);
+		Scene scene = new Scene(root,550,400);
+		
+		return scene;
+	}
+	
+	
 }
