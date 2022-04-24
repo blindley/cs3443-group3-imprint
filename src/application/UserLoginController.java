@@ -27,6 +27,27 @@ import javafx.stage.Stage;
 public class UserLoginController {
 
 	@FXML
+    private TextField inputField;
+
+    @FXML
+    private Label passwrdLabel;
+
+    @FXML
+    private TextField queAns;
+
+    @FXML
+    private Label quePrompt;
+
+    @FXML
+    private Label inputPrompt;
+
+    @FXML
+    private Label confirmLabel;
+
+    @FXML
+    private Label prompts;
+
+	@FXML
     private RadioMenuItem sq4_1;
 
     @FXML
@@ -205,6 +226,7 @@ public class UserLoginController {
     
     }
     
+    
     @FXML
     void sqSelect(ActionEvent event) {
     	
@@ -329,9 +351,30 @@ public class UserLoginController {
     	}
     }
     
+  //Sets starting postion for the ForgotPassword.fxml view
+    void setStart()
+    {
+    	passwrdLabel.setVisible(false);
+    	passwrdField.setVisible(false);
+    	
+    	
+    	quePrompt.setVisible(false);
+    	queAns.setVisible(false);
+    	
+    	confirmLabel.setVisible(false);
+    	passwrdConfirmation.setVisible(false);
+    	
+    	
+    }
+    
     @FXML
-    void forgotPasswordDisplay(ActionEvent event) {
-
+    void forgotPasswordDisplay(ActionEvent event) throws IOException {
+    	
+    	Stage stage = Main.getPrimaryStage();
+		Scene scene = SceneLoader.loadForgotPasswordScene();
+		
+		stage.setScene(scene);
+    	
     }
 
     @FXML
@@ -359,7 +402,7 @@ public class UserLoginController {
     	}
     	catch(Exception e)
     	{
-    		System.out.println(e.getMessage());
+    		errorDisplay.setText(e.getMessage());
     	}
     }
 
@@ -377,6 +420,110 @@ public class UserLoginController {
 		Scene scene = SceneLoader.loadUserLoginScene();
 		
 		stage.setScene(scene);
+    }
+    
+    @FXML
+    void passwordChange(ActionEvent event) {
+    	
+    	User forgot = new User(inputField.getText());
+
+    		
+		try {
+			
+    		if(inputPrompt.isVisible())
+    		{
+    			if(forgot.userPresent())
+    			{
+    				inputPrompt.setVisible(false);
+    				inputField.setVisible(false);
+    			
+    				quePrompt.setText(forgot.randQuestion());
+    				quePrompt.setVisible(true);
+    				queAns.setVisible(true);
+    			
+    				prompts.setText("Please answer the prompted question: ");
+    			}
+    			else
+    			{
+    				throw new Exception("User does not exist. Please try again or if you are a new user click on the designated \"New User?\" link"
+    					+ " in the home screen.");
+    			}
+    			
+    		}
+    		
+    		if(!queAns.getText().isEmpty() && quePrompt.isVisible())
+    		{
+    			if(forgot.verifyAnswer(quePrompt.getText(), queAns.getText()))
+    			{
+	    			quePrompt.setVisible(false);
+	    	    	queAns.setVisible(false);
+	    	    	
+	    	    	passwrdLabel.setVisible(true);
+	    	    	passwrdField.setVisible(true);
+	    	    	
+	    	    	confirmLabel.setVisible(true);
+	    	    	passwrdConfirmation.setVisible(true);	
+	    	    	
+	    	    	prompts.setText("Please choose your new password: ");
+    			}
+    			else
+	    		{
+	    			throw new Exception("The answer you chose is incorrect. Please try again. (Be aware they are case"
+	    					+ "sensitive)");
+	    		}
+    			
+    		}
+    		
+    		
+    		
+    		if(passwrdField.getText().length() < 8 && passwrdField.isVisible() 
+    				&& !passwrdField.getText().isEmpty())
+    		{
+    			throw new Exception("Please insert a minimum password length of 8 characters.");
+    		}
+    		
+    		for(int i = 0; i < passwrdField.getText().length();i++)
+    		{
+    			if((int)passwrdField.getText().charAt(i) < 32 || (int)passwrdField.getText().charAt(i) > 126 && passwrdField.isVisible())
+    			{
+    				throw new Exception("Invalid character used in password: " + passwrdField.getText().charAt(i) +
+    									". Please use standard ASCII characters.");
+    			}
+    		}
+    		
+    		if(passwrdConfirmation.getText().equals(passwrdField.getText()) && passwrdField.isVisible() 
+    				&& !passwrdField.getText().isEmpty())
+    		{
+    			forgot.newPassword(passwrdField.getText());
+    		
+	    		Alert success = new Alert(AlertType.INFORMATION);
+	    		
+	    		success.setTitle("Password Changed");
+	    		success.setHeaderText("Succesfully changed Password for: " + forgot.getUser());
+	    		success.setContentText("You can now login from the home screen.");
+	    		success.showAndWait();
+	    		
+	    		
+	    		Stage stage = Main.getPrimaryStage();
+				Scene scene = SceneLoader.loadUserLoginScene();
+				
+				stage.setScene(scene);
+    		}
+    		else if(!passwrdConfirmation.getText().equals(passwrdField.getText()) && passwrdField.isVisible())
+    		{
+    			throw new Exception("The passwords entered do no match. Please try again.");
+    		}
+ 
+    		
+    		
+		}
+		catch(Exception e)
+		{
+			prompts.setText(e.getMessage());
+		}
+		
+    		
+
     }
 	
 

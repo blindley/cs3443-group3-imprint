@@ -19,5 +19,10 @@
       <Hyperlink alignment="CENTER" layoutX="175.0" layoutY="277.0" onAction="#forgotPasswordDisplay" prefHeight="23.0" prefWidth="180.0" text="Forgot Password?" />
       <Button layoutX="239.0" layoutY="300.0" mnemonicParsing="false" onAction="#verifyUser" text="Login" />
       <Hyperlink layoutX="220.0" layoutY="325.0" onAction="#newUser" text="New account?" />
+      <Label fx:id="errorDisplay" alignment="CENTER" layoutX="4.0" layoutY="359.0" prefHeight="17.0" prefWidth="537.0" textFill="RED">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
