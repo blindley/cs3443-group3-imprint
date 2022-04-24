@@ -224,7 +224,7 @@ public class DeckProgress {
 	}
 
 	private static LocalDateTime today() {
-		return LocalDate.now().atStartOfDay();
+		return now().toLocalDate().atStartOfDay();
 	}
 }
 
