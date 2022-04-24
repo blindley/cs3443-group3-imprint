@@ -9,7 +9,11 @@ public class ReviewSession {
 
 	String userName;
 	String deckName;
-
+	/**
+	 * @param userName
+	 * @param deckName
+	 * @throws IOException
+	 */
 	public ReviewSession(String userName, String deckName) throws IOException {
 		deck = new FlashCardDeck();
 		progress = new DeckProgress();
@@ -43,11 +47,15 @@ public class ReviewSession {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * @return the input of the user when the card is passed to the next card
+	 */
 	public boolean hasNextCard() {
 		return progress.getNextDueCardId() != null;
 	}
-
+	/**
+	 * @return pulls the card id from the deck
+	 */
 	public FlashCard getNextCard() {
 		String id = progress.getNextDueCardId();
 		FlashCard fc = deck.getCard(id);
@@ -62,7 +70,9 @@ public class ReviewSession {
 	public void failNextCard() {
 		progress.failNextCard();
 	}
-
+	/**
+	 * @throws IOException
+	 */
 	public void save() throws IOException {
 		progress.save(userName, deckName);
 	}
