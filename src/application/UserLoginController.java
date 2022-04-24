@@ -392,6 +392,13 @@ public class UserLoginController {
     			
     			login.userVerification();
     			
+    			Alert success = new Alert(AlertType.INFORMATION);
+	    		
+	    		success.setTitle("Login Successful");
+	    		success.setHeaderText("Welcome " + login.getUser() + "!");
+	    		//success.setContentText("You can now login from the home screen.");
+	    		success.showAndWait();
+    			
     			Stage stage = Main.getPrimaryStage();
     			Scene scene = SceneLoader.loadDeckSelectionScene(login.getUser());
     			

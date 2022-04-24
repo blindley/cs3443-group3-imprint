@@ -67,6 +67,7 @@ public class SceneLoader {
     	AnchorPane root = loader.load();
 		Scene scene = new Scene(root,625,450);
 		
+		//Intializing the ForgotPassword.fxml scene
 		UserLoginController fP = loader.getController();
 	    fP.setStart();
 		

@@ -39,6 +39,8 @@ public class Main extends Application {
 		//Scene scene = SceneLoader.loadDeckSelectionScene("user01");
 		Scene scene = SceneLoader.loadUserLoginScene();
 		primaryStage.setScene(scene);
+		
+		primaryStage.setTitle("ImprinT");
 		primaryStage.show();
 	}
 	
