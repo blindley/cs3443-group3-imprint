@@ -36,7 +36,8 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 		primaryStage = stage;
-		Scene scene = SceneLoader.loadDeckSelectionScene("user01");
+		//Scene scene = SceneLoader.loadDeckSelectionScene("user01");
+		Scene scene = SceneLoader.loadUserLoginScene();
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
