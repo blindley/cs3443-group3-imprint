@@ -144,7 +144,7 @@ public class DeckProgress {
 			}
 
 			for (String cardId : newCards) {
-				String line = cardId + ",0," + "new";
+				String line = "#cardProgress," + cardId + ",0," + "new";
 				writer.write(line);
 				writer.newLine();
 			}
@@ -171,13 +171,13 @@ public class DeckProgress {
 		TreeSet<String> cardIds = deck.getCardIds();
 
 		for (String[] row : csvContent) {
-			if (row.length >= 3) {
-				String id = row[0];
-				int interval = Integer.parseInt(row[1]);
-				if (row[2].compareTo("new") == 0) {
+			if (row[0].equals("#cardProgress")) {
+				String id = row[1];
+				int interval = Integer.parseInt(row[2]);
+				if (row[3].compareTo("new") == 0) {
 					newCards.add(id);
 				} else {
-					LocalDateTime dueDate = LocalDateTime.parse(row[2]);
+					LocalDateTime dueDate = LocalDateTime.parse(row[3]);
 					CardProgress cp = new CardProgress();
 					cp.cardId = id;
 					cp.interval = interval;
@@ -219,7 +219,7 @@ class CardProgress {
 
 	@Override
 	public String toString() {
-		return cardId + "," + interval + "," + dueDate;
+		return "#cardProgress," + cardId + "," + interval + "," + dueDate;
 	}
 }
 
