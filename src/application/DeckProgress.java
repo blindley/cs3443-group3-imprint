@@ -215,6 +215,10 @@ public class DeckProgress {
 		// Used for simulating a different date, for testing the scheduling
 		// functionality
 		int dateOffset = 0;
+		String dateOffsetStr = Config.getValue("dateOffset");
+		if (!dateOffsetStr.isEmpty()) {
+			dateOffset = Integer.parseInt(dateOffsetStr);
+		}
 
 		return LocalDateTime.now().plusDays(dateOffset);
 	}
