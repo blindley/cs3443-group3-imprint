@@ -45,10 +45,15 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 		primaryStage = stage;
-		// Scene scene = SceneLoader.loadDeckSelectionScene("user01");
-		Scene scene = SceneLoader.loadUserLoginScene();
+		
+		Scene scene;		
+		if (Config.getValue("skipLogin").compareTo("true") == 0) {
+			scene = SceneLoader.loadDeckSelectionScene("testuser");			
+		} else {
+			scene = SceneLoader.loadUserLoginScene();			
+		}
+		
 		primaryStage.setScene(scene);
-
 		primaryStage.setTitle("ImprinT");
 		primaryStage.show();
 	}
