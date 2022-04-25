@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class ReviewSceneController implements Initializable {
@@ -38,6 +39,10 @@ public class ReviewSceneController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		session = Main.getReviewSession();
+
+		Font cardFont = new Font(36);
+		frontLabel.setFont(cardFont);
+		backLabel.setFont(cardFont);
 
 		FlashCard currentCard = session.getNextCard();
 		if (currentCard != null) {
@@ -120,20 +125,25 @@ public class ReviewSceneController implements Initializable {
 			flipToFront();
 		}
 	}
+
 	/**
-	 *  if card is memorized it allows the user to press a button to pass to the next card
+	 * if card is memorized it allows the user to press a button to pass to the next
+	 * card
 	 */
 	public void onPassButtonPressed() {
 		session.passNextCard();
 		nextCard();
 	}
+
 	/**
-	 * if card is not memorized when flipped the user presses the fail button which pushes the card to the back of the deck
+	 * if card is not memorized when flipped the user presses the fail button which
+	 * pushes the card to the back of the deck
 	 */
 	public void onFailButtonPressed() {
 		session.failNextCard();
 		nextCard();
 	}
+
 	/**
 	 * this allows the user to flip the card after reading the front to the back
 	 */
