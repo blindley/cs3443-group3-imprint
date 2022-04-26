@@ -9,10 +9,7 @@ public class Config {
 	static HashMap<String, String> configData;
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Initializes the configData HashMap from file "config.csv"
 	 */
 	public static void initialize() {
 		configData = new HashMap<String, String>();
@@ -41,30 +38,30 @@ public class Config {
 	}
 	
 	/**
-	 * TODO: purpose of the function
+	 * Returns all config data, so the user iterate over all existing values
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return all of the configData
 	 */
 	public static HashMap<String, String> getAllConfigData() {
 		return configData;
 	}
 	
 	/**
-	 * TODO: purpose of the function
+	 * Checks if configData contains a particular key
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param key	The key to check
+	 * @return		true if configData contains the key
 	 */
 	public static boolean containsKey(String key) {
 		return configData.containsKey(key);
 	}
 	
 	/**
-	 * TODO: purpose of the function
+	 * Gets the value associated with a key in configData. Returns an empty
+	 * string if the key is not present.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param key	The key to check
+	 * @return The value associated with the key, or an empty string
 	 */
 	public static String getValue(String key) {
 		String value = configData.get(key);
