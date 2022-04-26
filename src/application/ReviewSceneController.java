@@ -36,6 +36,12 @@ public class ReviewSceneController implements Initializable {
 
 	ReviewSession session;
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		session = Main.getReviewSession();
@@ -83,6 +89,12 @@ public class ReviewSceneController implements Initializable {
 		}
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	private void flipToFront() {
 		backLabel.setVisible(false);
 
@@ -90,6 +102,12 @@ public class ReviewSceneController implements Initializable {
 		reviewControlsPane.getChildren().add(flipButton);
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	private void flipToBack() {
 		backLabel.setVisible(true);
 
@@ -97,6 +115,12 @@ public class ReviewSceneController implements Initializable {
 		reviewControlsPane.getChildren().add(passFailButtonGroup);
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	private void endSession() {
 		try {
 			session.save();
@@ -113,6 +137,12 @@ public class ReviewSceneController implements Initializable {
 		}
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	private void nextCard() {
 		FlashCard currentCard = session.getNextCard();
 
@@ -151,6 +181,12 @@ public class ReviewSceneController implements Initializable {
 		flipToBack();
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	@FXML
 	void onEndSessionButtonPressed(ActionEvent event) {
 		endSession();

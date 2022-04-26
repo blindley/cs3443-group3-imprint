@@ -7,7 +7,13 @@ import java.util.HashMap;
 
 public class Config {
 	static HashMap<String, String> configData;
-	
+
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	public static void initialize() {
 		configData = new HashMap<String, String>();
 		
@@ -34,14 +40,32 @@ public class Config {
 		}
 	}
 	
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	public static HashMap<String, String> getAllConfigData() {
 		return configData;
 	}
 	
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	public static boolean containsKey(String key) {
 		return configData.containsKey(key);
 	}
 	
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	public static String getValue(String key) {
 		String value = configData.get(key);
 		if (value == null)

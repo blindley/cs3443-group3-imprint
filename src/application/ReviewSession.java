@@ -9,10 +9,12 @@ public class ReviewSession {
 
 	String userName;
 	String deckName;
+
 	/**
-	 * @param userName
-	 * @param deckName
-	 * @throws IOException
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public ReviewSession(String userName, String deckName) throws IOException {
 		deck = new FlashCardDeck();
@@ -37,7 +39,6 @@ public class ReviewSession {
 			fc.setBack(back);
 
 			deck.addOrUpdateCard(id, fc);
-//			progress.addNewCard(id);
 		}
 
 		try {
@@ -47,14 +48,22 @@ public class ReviewSession {
 			e.printStackTrace();
 		}
 	}
+	
 	/**
-	 * @return the input of the user when the card is passed to the next card
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public boolean hasNextCard() {
 		return progress.getNextDueCardId() != null;
 	}
+
 	/**
-	 * @return pulls the card id from the deck
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public FlashCard getNextCard() {
 		String id = progress.getNextDueCardId();
@@ -63,15 +72,31 @@ public class ReviewSession {
 		return fc;
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	public void passNextCard() {
 		progress.passNextCard();
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	public void failNextCard() {
 		progress.failNextCard();
 	}
+
 	/**
-	 * @throws IOException
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public void save() throws IOException {
 		progress.save(userName, deckName);

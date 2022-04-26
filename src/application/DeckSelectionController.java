@@ -24,6 +24,12 @@ public class DeckSelectionController implements Initializable {
 	@FXML
 	private Label deckInfoLabel;
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		File deckDirectory = new File("data/decks");
@@ -50,6 +56,12 @@ public class DeckSelectionController implements Initializable {
 		deckInfoLabel.setWrapText(true);
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	@FXML
 	void onBeginSessionButtonClicked(ActionEvent event) throws IOException {
 		String userName = Main.getUserName();
