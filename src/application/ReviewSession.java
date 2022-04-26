@@ -11,10 +11,11 @@ public class ReviewSession {
 	String deckName;
 
 	/**
-	 * TODO: purpose of the function
+	 * ReviewSession constructor. Loads the flash card deck, and the deck
+	 * progress file for the specified user and deck.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param userName	The user name for the current session
+	 * @param deckName	The deck name for the current session
 	 */
 	public ReviewSession(String userName, String deckName) throws IOException {
 		deck = new FlashCardDeck();
@@ -50,20 +51,18 @@ public class ReviewSession {
 	}
 	
 	/**
-	 * TODO: purpose of the function
+	 * Checks if there are any cards left to review for today.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return true if there are any cards left to review
 	 */
 	public boolean hasNextCard() {
 		return progress.getNextDueCardId() != null;
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Gets the next due card for today, or null
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return The next due card
 	 */
 	public FlashCard getNextCard() {
 		String id = progress.getNextDueCardId();
@@ -73,30 +72,23 @@ public class ReviewSession {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Passes the next card, increasing its interval and moving to the next
+	 * due card
 	 */
 	public void passNextCard() {
 		progress.passNextCard();
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Fails the next card, resetting its interval to 0, and moving to the
+	 * next due card.
 	 */
 	public void failNextCard() {
 		progress.failNextCard();
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Saves the current user's progress in the current deck
 	 */
 	public void save() throws IOException {
 		progress.save(userName, deckName);
