@@ -3,10 +3,10 @@ package application.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.FlashCard;
 import application.Main;
-import application.ReviewSession;
 import application.SceneLoader;
+import application.model.FlashCard;
+import application.model.ReviewSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

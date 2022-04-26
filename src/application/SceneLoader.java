@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import application.controller.UserLoginController;
+import application.model.ReviewSession;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +23,7 @@ public class SceneLoader {
 		if (userName != null)
 			Main.setUserName(userName);
 
-		URL url = new File("src/application/DeckSelectionScene.fxml").toURI().toURL();
+		URL url = new File("src/application/view/DeckSelectionScene.fxml").toURI().toURL();
 		Parent root = FXMLLoader.load(url);
 		Scene scene = new Scene(root, 600, 450);
 
@@ -45,7 +46,7 @@ public class SceneLoader {
 		if (session.hasNextCard()) {
 			Main.setReviewSession(session);
 
-			URL url = new File("src/application/ReviewScene.fxml").toURI().toURL();
+			URL url = new File("src/application/view/ReviewScene.fxml").toURI().toURL();
 			Parent root = FXMLLoader.load(url);
 			Scene scene = new Scene(root, 600, 450);
 
@@ -65,7 +66,7 @@ public class SceneLoader {
 	 * @return the user login scene
 	 */
 	public static Scene loadUserLoginScene() throws IOException {
-		URL url = new File("src/application/UserLogin.fxml").toURI().toURL();
+		URL url = new File("src/application/view/UserLogin.fxml").toURI().toURL();
 		AnchorPane root = FXMLLoader.load(url);
 		Scene scene = new Scene(root, 550, 400);
 
@@ -78,7 +79,7 @@ public class SceneLoader {
 	 * @return the new user scene
 	 */
 	public static Scene loadNewUserScene() throws IOException {
-		URL url = new File("src/application/NewUser.fxml").toURI().toURL();
+		URL url = new File("src/application/view/NewUser.fxml").toURI().toURL();
 		AnchorPane root = FXMLLoader.load(url);
 		Scene scene = new Scene(root, 625, 450);
 
@@ -91,13 +92,13 @@ public class SceneLoader {
 	 * @return the forgot password scene
 	 */
 	public static Scene loadForgotPasswordScene() throws IOException {
-		URL url = new File("src/application/ForgotPassword.fxml").toURI().toURL();
+		URL url = new File("src/application/view/ForgotPassword.fxml").toURI().toURL();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(url);
 		AnchorPane root = loader.load();
 		Scene scene = new Scene(root, 625, 450);
 
-		// Intializing the ForgotPassword.fxml scene
+		// Initializing the ForgotPassword.fxml scene
 		UserLoginController fP = loader.getController();
 		fP.setStart();
 

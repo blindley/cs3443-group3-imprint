@@ -1,4 +1,4 @@
-package application;
+package application.model;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 
+import application.model.ReviewSession;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;

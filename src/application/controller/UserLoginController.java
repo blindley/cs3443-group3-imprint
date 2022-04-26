@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import application.Main;
 import application.SceneLoader;
-import application.User;
+import application.model.User;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
