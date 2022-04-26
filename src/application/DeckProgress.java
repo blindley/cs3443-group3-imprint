@@ -21,10 +21,8 @@ public class DeckProgress {
 	int newCardsAddedToday;
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * DeckProgress Constructor. Initializes data newCards and reviewQueue
+	 * to empty.
 	 */
 	public DeckProgress() {
 		nextCard = null;
@@ -35,10 +33,8 @@ public class DeckProgress {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Moves a card from the newCards queue to the review queue, if the max
+	 * new cards per day has not been reached yet.
 	 */
 	private void moveNewCardToReviewQueue() {
 		if (newCardsAddedToday < maxNewCardsPerDay) {
@@ -56,10 +52,10 @@ public class DeckProgress {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * If nextCard is null, first tries to pull a card from the review queue.
+	 * If there are no due cards in the review queue, it then tries to move a
+	 * card from the new card queue to the review queue. If the new cards per
+	 * day has been reached, nextCard remains null.
 	 */
 	private void updateNextCard() {
 		if (nextCard == null) {
@@ -87,20 +83,18 @@ public class DeckProgress {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Adds a new card id to the new cards queue.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param id	the id of the card to add
 	 */
 	void addNewCard(String id) {
 		newCards.add(id);
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Gets the id of the next card that needs to be reveiwed this session.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return The id of the next card to review, or null.
 	 */
 	public String getNextDueCardId() {
 		updateNextCard();
@@ -112,10 +106,9 @@ public class DeckProgress {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Marks nextCard as successfully remembered, increases its interval, and
+	 * sets its due date a number of days into the future equal to the new
+	 * interval.
 	 */
 	public void passNextCard() {
 		updateNextCard();
@@ -134,7 +127,7 @@ public class DeckProgress {
 
 	/**
 	 * When the user fails a card it gets moved to the back of the queue until the
-	 * user passes the card
+	 * user passes the card. Resets its interval to zero.
 	 */
 	public void failNextCard() {
 		moveNewCardToReviewQueue();
@@ -149,8 +142,10 @@ public class DeckProgress {
 	}
 
 	/**
-	 * @param userName
-	 * @param deckName
+	 * Saves the progress for the specified user in the specified deck to a file
+	 * 
+	 * @param userName	The user name of the user of the current session
+	 * @param deckName	The name of the deck of the current session
 	 * @throws IOException
 	 */
 	public void save(String userName, String deckName) throws IOException {
@@ -182,9 +177,13 @@ public class DeckProgress {
 	}
 
 	/**
-	 * @param userName
-	 * @param deckName
-	 * @param deck
+	 * Loads the user data for the specified user name and deck name. The
+	 * contents of the flash card deck need to be passed in case any new cards
+	 * have been added to or removed from the deck.
+	 * 
+	 * @param userName	The user name of the user for the current session
+	 * @param deckName	The name of the deck for the current session
+	 * @param deck		The contents of the deck
 	 * @throws IOException
 	 */
 	public void load(String userName, String deckName, FlashCardDeck deck) throws IOException {
@@ -233,15 +232,23 @@ public class DeckProgress {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Gets the filename for the progress file of the specified user in the
+	 * specified deck.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param userName	The user name
+	 * @param deckName	The deck name
+	 * @return The filename of the progress file.
 	 */
 	private static String buildProgressFilePath(String userName, String deckName) {
 		return "data/users/" + userName + "/" + deckName + ".csv";
 	}
 
+	/**
+	 * Gets the current date and time, possibly offset by some number of days
+	 * specified in the config file (for testing purposes).
+	 * 
+	 * @return The current date and time
+	 */
 	private static LocalDateTime now() {
 		// Used for simulating a different date, for testing the scheduling
 		// functionality
@@ -255,10 +262,12 @@ public class DeckProgress {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Returns a date and time corresponding to the start of the day (midnight)
+	 * which is returned by the now() function. This is used for comparing
+	 * to the due date of cards, because we all of the cards which are due
+	 * in a day to come at once.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return Date and time of current day
 	 */
 	private static LocalDateTime today() {
 		return now().toLocalDate().atStartOfDay();
