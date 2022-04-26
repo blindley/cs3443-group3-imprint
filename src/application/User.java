@@ -21,10 +21,9 @@ public class User {
 	private ArrayList<String> ans;
 
 	/**
-	 * TODO: purpose of the function
+	 * User class constructor, creates a new user
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param user	The user name
 	 */
 	public User(String user) {
 		this.user = user;
@@ -33,10 +32,10 @@ public class User {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * User class constructor. Creates a new user with name and passwrod
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param user		the new user name
+	 * @param password	the new user's password
 	 */
 	public User(String user, String password) {
 		this.user = user;
@@ -46,10 +45,13 @@ public class User {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * User class constructor. Creates a new user with user name, password,
+	 * and questions and answers for password recovery.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param user		the new user name
+	 * @param password	the new user's password
+	 * @param que		the password recovery questions
+	 * @param ans		the password recovery answers
 	 */
 	public User(String user, String password, ArrayList<String> que, ArrayList<String> ans) {
 		this.user = user;
@@ -64,10 +66,12 @@ public class User {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Returns a hash string for the given content using the specified
+	 * hashing algorithm.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param content	The string to hash
+	 * @param algo		The hash algorithm to use
+	 * @return The hashed string content
 	 */
 	public String hashUser(String content, String algo) {
 		String hashedContent = "";
@@ -87,10 +91,7 @@ public class User {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Adds this user to the user info file
 	 */
 	public void newAddition() throws Exception {
 		if (userPresent()) {
@@ -116,10 +117,9 @@ public class User {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Checks if this user is present in the user info file
+	 *
+	 * @return boolean indicating whether the user exists or not
 	 */
 	public boolean userPresent() {
 		String currentName = "";
@@ -145,10 +145,9 @@ public class User {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Verify's the user and password combination
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return boolean indicating matching password
 	 */
 	public boolean userVerification() throws Exception {
 
@@ -186,10 +185,10 @@ public class User {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Selects a random question from the list of password recovery questions
+	 * for this user.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return The password recovery question
 	 */
 	public String randQuestion() throws IOException {
 
@@ -223,10 +222,11 @@ public class User {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Verifies the correct answers for the password recovery questions
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param que	The password recovery question
+	 * @param ans	The password recovery answer
+	 * @return boolean indicating if the answer matches the question
 	 */
 	public boolean verifyAnswer(String que, String ans) throws FileNotFoundException, IOException {
 		String selectedUser = "";
@@ -269,10 +269,10 @@ public class User {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Sets a new password password for this user, saving it to the user
+	 * info file
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param password	The new password
 	 */
 	public void newPassword(String password) {
 		String selectedUser = "";
@@ -322,40 +322,36 @@ public class User {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Getter for the user name
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return The current user name
 	 */
 	public String getUser() {
 		return user;
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Setter for the user name
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param user	The new user name
 	 */
 	public void setUser(String user) {
 		this.user = user;
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Getter for the password
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return the current user's password
 	 */
 	public String getPassword() {
 		return password;
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Setter for the password
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param password	The password to set
 	 */
 	public void setPassword(String password) {
 		this.password = password;
