@@ -11,10 +11,10 @@ import javafx.scene.layout.AnchorPane;
 public class SceneLoader {
 
 	/**
-	 * TODO: purpose of the function
+	 * Loads the deck selection scene
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param userName	The user name for the session
+	 * @return The deck selection scene
 	 */
 	public static Scene loadDeckSelectionScene(String userName) throws IOException {
 		if (userName != null)
@@ -31,10 +31,11 @@ public class SceneLoader {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Loads the review session scene
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param userName	The user name for this session
+	 * @param deckName	The deck name for this session
+	 * @return The review session scene
 	 */
 	public static Scene loadReviewSessionScene(String userName, String deckName) throws IOException {
 		ReviewSession session = new ReviewSession(userName, deckName);
@@ -57,10 +58,9 @@ public class SceneLoader {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Load the User Login scene
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return the user login scene
 	 */
 	public static Scene loadUserLoginScene() throws IOException {
 		URL url = new File("src/application/UserLogin.fxml").toURI().toURL();
@@ -71,10 +71,9 @@ public class SceneLoader {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Load the new user scene
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return the new user scene
 	 */
 	public static Scene loadNewUserScene() throws IOException {
 		URL url = new File("src/application/NewUser.fxml").toURI().toURL();
@@ -85,10 +84,9 @@ public class SceneLoader {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Load the forgot password scene
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return the forgot password scene
 	 */
 	public static Scene loadForgotPasswordScene() throws IOException {
 		URL url = new File("src/application/ForgotPassword.fxml").toURI().toURL();
