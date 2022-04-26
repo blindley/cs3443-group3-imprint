@@ -5,40 +5,36 @@ public class FlashCard {
 	String back;
 
 	/**
-	 * TODO: purpose of the function
+	 * Getter for card front
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return the front text of the card
 	 */
 	String getFront() {
 		return front;
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Getter for the back of the card
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return the back text of the card
 	 */
 	String getBack() {
 		return back;
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Setter for the front of the card
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param  newFront		The new text for the card front
 	 */
 	void setFront(String newFront) {
 		this.front = newFront;
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Setter for the back of the card
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param newBack		The new text for the card back
 	 */
 	void setBack(String newBack) {
 		this.back = newBack;
