@@ -9,7 +9,7 @@ public class FlashCard {
 	 * 
 	 * @return the front text of the card
 	 */
-	String getFront() {
+	public String getFront() {
 		return front;
 	}
 
@@ -18,7 +18,7 @@ public class FlashCard {
 	 * 
 	 * @return the back text of the card
 	 */
-	String getBack() {
+	public String getBack() {
 		return back;
 	}
 
@@ -27,7 +27,7 @@ public class FlashCard {
 	 * 
 	 * @param  newFront		The new text for the card front
 	 */
-	void setFront(String newFront) {
+	public void setFront(String newFront) {
 		this.front = newFront;
 	}
 
@@ -36,7 +36,7 @@ public class FlashCard {
 	 * 
 	 * @param newBack		The new text for the card back
 	 */
-	void setBack(String newBack) {
+	public void setBack(String newBack) {
 		this.back = newBack;
 	}
 }
