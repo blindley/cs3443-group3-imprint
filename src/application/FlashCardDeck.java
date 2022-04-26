@@ -7,37 +7,38 @@ public class FlashCardDeck {
 	HashMap<String, FlashCard> theCards;
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Constructor. Initilizes theCards to empty hash map
 	 */
 	FlashCardDeck() {
 		theCards = new HashMap<String, FlashCard>();
 	}
 
-	//**
-	* TODO: purpose of the function
-	* 
-	* @param TODO: purpose of the parameter
-	* @return TODO: What does this function return?
-	*/
-   public FlashCard getCard(String id) {
-		return theCards.get(id);
-	}	
 	/**
-	 * @param id
-	 * @param card
+	 * Gets the flash card with the specified id
+	 * 
+	 * @param id		The id of the card to get
+	 * @return the flash card with the specified id
+	 */
+	public FlashCard getCard(String id) {
+		return theCards.get(id);
+	}
+
+	/**
+	 * Adds a new card into the deck with the specified id, or updates the card
+	 * if it already exists.
+	 * 
+	 * @param id	The id of the card to add or update
+	 * @param card	The card contents
 	 */
 	public void addOrUpdateCard(String id, FlashCard card) {
 		theCards.put(id, card);
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Returns an set containing the ids of the cards, sorted in
+	 * lexicographical order.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @return The set of card ids
 	 */
 	public TreeSet<String> getCardIds() {
 		TreeSet<String> ids = new TreeSet<String>();
