@@ -25,10 +25,10 @@ public class DeckSelectionController implements Initializable {
 	private Label deckInfoLabel;
 
 	/**
-	 * TODO: purpose of the function
+	 * Populates the list view with the names of availeble decks
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param arg0	unused
+	 * @param arg1	unused
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -57,10 +57,9 @@ public class DeckSelectionController implements Initializable {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Transfers control to the Review Session scene
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param event		unused
 	 */
 	@FXML
 	void onBeginSessionButtonClicked(ActionEvent event) throws IOException {
