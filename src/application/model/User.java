@@ -2,6 +2,7 @@ package application.model;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -89,6 +90,17 @@ public class User {
 
 		return hashedContent;
 	}
+	
+	File getUserInfoFile() throws IOException {
+		String path = "data/" + userInfoF;
+		File f = new File(path);
+		if (!f.exists()) {
+			FileWriter writer = new FileWriter(f);
+			writer.close();
+		}
+		
+		return f;
+	}
 
 	/**
 	 * Adds this user to the user info file
@@ -98,7 +110,7 @@ public class User {
 			throw new Exception(
 					"This user already exist. Please use another e-mail or click on \"Forgot Password?\" in the home screen.");
 		} else {
-			try (FileWriter writeFile = new FileWriter("data\\" + userInfoF, true);
+			try (FileWriter writeFile = new FileWriter(getUserInfoFile(), true);
 					BufferedWriter writerBuffer = new BufferedWriter(writeFile)) {
 
 				writerBuffer.write(user + " , " + password);
@@ -124,7 +136,7 @@ public class User {
 	public boolean userPresent() {
 		String currentName = "";
 		String[] usersInfo;
-		try (FileReader readFile = new FileReader("data\\" + userInfoF);
+		try (FileReader readFile = new FileReader(getUserInfoFile());
 				BufferedReader readBuffer = new BufferedReader(readFile)) {
 
 			while ((currentName = readBuffer.readLine()) != null) {
@@ -158,7 +170,7 @@ public class User {
 		} else {
 			String selectedUser = "";
 			String[] usersInfo;
-			try (FileReader readFile = new FileReader("data\\" + userInfoF);
+			try (FileReader readFile = new FileReader(getUserInfoFile());
 					BufferedReader readBuffer = new BufferedReader(readFile)) {
 
 				while ((selectedUser = readBuffer.readLine()) != null) {
@@ -195,7 +207,7 @@ public class User {
 		String selectedUser = "";
 		String[] usersInfo;
 		String[] questions = new String[3];
-		try (FileReader readFile = new FileReader("data\\" + userInfoF);
+		try (FileReader readFile = new FileReader(getUserInfoFile());
 				BufferedReader readBuffer = new BufferedReader(readFile)) {
 
 			while ((selectedUser = readBuffer.readLine()) != null) {
@@ -232,7 +244,7 @@ public class User {
 		String selectedUser = "";
 		String[] usersInfo;
 
-		try (FileReader readFile = new FileReader("data\\" + userInfoF);
+		try (FileReader readFile = new FileReader(getUserInfoFile());
 				BufferedReader readBuffer = new BufferedReader(readFile)) {
 
 			while ((selectedUser = readBuffer.readLine()) != null) {
@@ -279,7 +291,7 @@ public class User {
 		String[] usersInfo;
 		String listOfUsers = "";
 		String[] data = null;
-		try (FileReader readFile = new FileReader("data\\" + userInfoF);
+		try (FileReader readFile = new FileReader(getUserInfoFile());
 				BufferedReader readBuffer = new BufferedReader(readFile)) {
 
 			while ((selectedUser = readBuffer.readLine()) != null) {
@@ -306,7 +318,7 @@ public class User {
 			e.printStackTrace();
 		}
 
-		try (FileWriter writeFile = new FileWriter("data\\" + userInfoF);
+		try (FileWriter writeFile = new FileWriter(getUserInfoFile());
 				BufferedWriter writerBuffer = new BufferedWriter(writeFile)) {
 
 			for (int i = 0; i < data.length; i++) {
