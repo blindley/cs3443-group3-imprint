@@ -9,7 +9,7 @@
 
 ## Description
 ImprinT is a flashcard application that uses a spaced repetition algorithm for reviewing cards,
-in order to spend more time on the easy cards, and more time on the difficult ones.
+in order to spend less time on the easy cards, and more time on the difficult ones.
 
 ## Known Bugs
 none
