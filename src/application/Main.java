@@ -13,45 +13,64 @@ public class Main extends Application {
 	static String userName;
 
 	/**
-	 * @return the primary stage for scenebuilder
+	 * Returns the primary (and only) stage for the application, to be shared
+	 * by all scenes.
+	 * 
+	 * @return the primary stage
 	 */
 	public static Stage getPrimaryStage() {
 		return primaryStage;
 	}
+
 	/**
-	 * @return The review session for the cards
+	 * Returns the current review session.
+	 * 
+	 * @return The review session
 	 */
 	public static ReviewSession getReviewSession() {
 		return reviewSession;
 	}
+
 	/**
-	 * @param session
+	 * Sets the current review session.
+	 * 
+	 * @param session	The new session
 	 */
 	public static void setReviewSession(ReviewSession session) {
 		reviewSession = session;
 	}
+
 	/**
-	 * @return the username for the user
+	 * @return the username for the current user
 	 */
 	public static String getUserName() {
 		return userName;
 	}
+
 	/**
-	 * @param newUserName when the user creates a new username
+	 * Sets the current user name
+	 * 
+	 * @param newUserName the new value for the current user name
 	 */
 	public static void setUserName(String newUserName) {
 		userName = newUserName;
 	}
 
+	/**
+	 * The starting point for a JavaFX application. Transfers control to the
+	 * user login scene.
+	 * 
+	 * @param stage		The primary stage for the application
+	 */
 	@Override
 	public void start(Stage stage) throws IOException {
 		primaryStage = stage;
 		
 		Scene scene;		
 		if (Config.getValue("skipLogin").compareTo("true") == 0) {
-			scene = SceneLoader.loadDeckSelectionScene("testuser");			
+			scene = SceneLoader.loadDeckSelectionScene("testuser");
 		} else {
-			scene = SceneLoader.loadUserLoginScene();			
+			scene = SceneLoader.loadUserLoginScene();
 		}
 		
 		primaryStage.setScene(scene);
@@ -60,10 +79,11 @@ public class Main extends Application {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * The entry point for the application. Loads configuration data, then
+	 * launches JavaFX. Saves the review session in case the user exits their
+	 * session abnormally.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param args	command line arguments, unused
 	 */
 	public static void main(String[] args) {
 		
