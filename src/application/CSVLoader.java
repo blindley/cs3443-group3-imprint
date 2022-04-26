@@ -11,11 +11,13 @@ import java.util.ArrayList;
  */
 public class CSVLoader {
 	/**
-	 * @param filename
-	 * @return
+	 * Loads a CSV file as an ArrayList of String arrays. Each element of the
+	 * Array list corresponds to a row in the csv file.
+	 * 
+	 * @param filename		the filename of the csv file
+	 * @return	the data from the file
 	 * @throws IOException
 	 */
-
 	public static ArrayList<String[]> loadCSV(String filename) throws IOException {
 		try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
 			ArrayList<String[]> rows = new ArrayList<String[]>();
