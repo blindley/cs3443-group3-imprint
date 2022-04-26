@@ -127,10 +127,9 @@ public class UserLoginController {
 	ToggleGroup securityQuestions3 = new ToggleGroup();
 
 	/**
-	 * TODO: purpose of the function
+	 * Validates user profile information for new user, then creates user
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param event	unused
 	 */
 	@FXML
 	void validateUser(ActionEvent event) throws IOException {
@@ -203,10 +202,8 @@ public class UserLoginController {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Sets the initial state of the security question toggles, adding all
+	 * questions to all question groups.
 	 */
 	public void initialToggle() {
 
@@ -231,10 +228,10 @@ public class UserLoginController {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Handles the security question selection for each of the 3 security
+	 * question boxes
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param event		used to determine which question box the user is interacting with
 	 */
 	@FXML
 	void sqSelect(ActionEvent event) {
@@ -334,12 +331,8 @@ public class UserLoginController {
 		}
 	}
 
-	// Sets starting postion for the ForgotPassword.fxml view
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Sets starting postion for the ForgotPassword.fxml view
 	 */
 	void setStart() {
 		passwrdLabel.setVisible(false);
@@ -353,6 +346,10 @@ public class UserLoginController {
 
 	}
 
+	/**
+	 * Transfers control to the forgot password scene when the user clicks
+	 * on the "forgot password" link.
+	 */
 	@FXML
 	void forgotPasswordDisplay(ActionEvent event) throws IOException {
 
@@ -364,10 +361,9 @@ public class UserLoginController {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Verifies fields in the user login screen
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param event	unused
 	 */
 	@FXML
 	void verifyUser(ActionEvent event) {
@@ -400,10 +396,8 @@ public class UserLoginController {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Transfers control the the new user creation scene when the user clicks
+	 * on the "new user" link
 	 */
 	@FXML
 	void newUser(ActionEvent event) throws IOException {
@@ -414,10 +408,10 @@ public class UserLoginController {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Transfers control back to the user login screen when the user clicks
+	 * on the "Home Screen" button
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param event	unused
 	 */
 	@FXML
 	void home_screen(ActionEvent event) throws IOException {
@@ -428,10 +422,10 @@ public class UserLoginController {
 	}
 
 	/**
-	 * TODO: purpose of the function
+	 * Prompts for a password change when the user clicks on the "Forgot Password"
+	 * link
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param event	unused
 	 */
 	@FXML
 	void passwordChange(ActionEvent event) {
