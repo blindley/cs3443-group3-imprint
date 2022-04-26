@@ -37,10 +37,10 @@ public class ReviewSceneController implements Initializable {
 	ReviewSession session;
 
 	/**
-	 * TODO: purpose of the function
+	 * Initialize the review scene.
 	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * @param arg0	unused
+	 * @param arg1	unused
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -90,10 +90,8 @@ public class ReviewSceneController implements Initializable {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Hides the back of the card, and the pass and fail buttons. Shows the
+	 * flip button.
 	 */
 	private void flipToFront() {
 		backLabel.setVisible(false);
@@ -103,10 +101,8 @@ public class ReviewSceneController implements Initializable {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Unhides the back of the card. Hides the flip button, and shows the pass
+	 * and fail buttons.
 	 */
 	private void flipToBack() {
 		backLabel.setVisible(true);
@@ -116,10 +112,8 @@ public class ReviewSceneController implements Initializable {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Ends the review session, saving the current progress, and transferring
+	 * control back to the deck selection scene.
 	 */
 	private void endSession() {
 		try {
@@ -138,10 +132,8 @@ public class ReviewSceneController implements Initializable {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Retrieves the next card, and flips to the front. Or if there are no
+	 * cards left to review, ends the session.
 	 */
 	private void nextCard() {
 		FlashCard currentCard = session.getNextCard();
@@ -182,10 +174,7 @@ public class ReviewSceneController implements Initializable {
 	}
 
 	/**
-	 * TODO: purpose of the function
-	 * 
-	 * @param TODO: purpose of the parameter
-	 * @return TODO: What does this function return?
+	 * Ends the session when the user manually presses the end session button
 	 */
 	@FXML
 	void onEndSessionButtonPressed(ActionEvent event) {
