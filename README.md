@@ -15,4 +15,8 @@ in order to spend less time on the easy cards, and more time on the difficult on
 none
 
 ## Login Info
-TODO
+To log in, it is best to just create a new user with an email address and password. Otherwise, copy the file `data/example-userInfo.txt` to `data/userInfo.txt`.
+Then you can log in with the following credentials:
+
+    e-mail:    example@example.com
+    password:  password
