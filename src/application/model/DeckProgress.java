@@ -1,4 +1,4 @@
-package application;
+package application.model;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.TreeSet;
+
+import application.CSVLoader;
+import application.Config;
 
 public class DeckProgress {
 	CardProgress nextCard;

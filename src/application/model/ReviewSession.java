@@ -1,7 +1,9 @@
-package application;
+package application.model;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import application.CSVLoader;
 
 public class ReviewSession {
 	FlashCardDeck deck;

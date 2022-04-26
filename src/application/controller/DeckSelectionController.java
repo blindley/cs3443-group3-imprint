@@ -1,4 +1,4 @@
-package application;
+package application.controller;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
+import application.SceneLoader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

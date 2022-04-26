@@ -1,8 +1,12 @@
-package application;
+package application.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
+import application.SceneLoader;
+import application.model.FlashCard;
+import application.model.ReviewSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

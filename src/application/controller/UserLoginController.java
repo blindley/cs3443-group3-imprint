@@ -1,11 +1,13 @@
-package application;
+package application.controller;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-import application.User;
+import application.Main;
+import application.SceneLoader;
+import application.model.User;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -334,7 +336,7 @@ public class UserLoginController {
 	/**
 	 * Sets starting postion for the ForgotPassword.fxml view
 	 */
-	void setStart() {
+	public void setStart() {
 		passwrdLabel.setVisible(false);
 		passwrdField.setVisible(false);
 
