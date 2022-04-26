@@ -19,17 +19,24 @@ public class User {
 	private String userInfoF;
 	private ArrayList<String> que;
 	private ArrayList<String> ans;
+
 	/**
-	 * @param user
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public User(String user) {
 		this.user = user;
 
 		userInfoF = "userInfo.txt";
 	}
+
 	/**
-	 * @param user
-	 * @param password
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public User(String user, String password) {
 		this.user = user;
@@ -37,11 +44,12 @@ public class User {
 
 		userInfoF = "userInfo.txt";
 	}
+
 	/**
-	 * @param user
-	 * @param password
-	 * @param que
-	 * @param ans
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public User(String user, String password, ArrayList<String> que, ArrayList<String> ans) {
 		this.user = user;
@@ -54,10 +62,12 @@ public class User {
 		this.ans = ans;
 		userInfoF = "userInfo.txt";
 	}
+
 	/**
-	 * @param content
-	 * @param algo
-	 * @return
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public String hashUser(String content, String algo) {
 		String hashedContent = "";
@@ -77,7 +87,10 @@ public class User {
 	}
 
 	/**
-	 * @throws Exception
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public void newAddition() throws Exception {
 		if (userPresent()) {
@@ -101,8 +114,12 @@ public class User {
 			}
 		}
 	}
+
 	/**
-	 * @return
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public boolean userPresent() {
 		String currentName = "";
@@ -126,9 +143,12 @@ public class User {
 
 		return false;
 	}
+
 	/**
-	 * @return
-	 * @throws Exception
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public boolean userVerification() throws Exception {
 
@@ -164,9 +184,12 @@ public class User {
 
 		return false;
 	}
+
 	/**
-	 * @return
-	 * @throws IOException
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public String randQuestion() throws IOException {
 
@@ -198,12 +221,12 @@ public class User {
 		return "";
 
 	}
+
 	/**
-	 * @param que
-	 * @param ans
-	 * @return
-	 * @throws FileNotFoundException
-	 * @throws IOException
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public boolean verifyAnswer(String que, String ans) throws FileNotFoundException, IOException {
 		String selectedUser = "";
@@ -244,8 +267,12 @@ public class User {
 
 		return false;
 	}
+
 	/**
-	 * @param password
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public void newPassword(String password) {
 		String selectedUser = "";
@@ -293,26 +320,42 @@ public class User {
 			e.printStackTrace();
 		}
 	}
+
 	/**
-	 * @return
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public String getUser() {
 		return user;
 	}
+
 	/**
-	 * @param user
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public void setUser(String user) {
 		this.user = user;
 	}
+
 	/**
-	 * @return
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public String getPassword() {
 		return password;
 	}
+
 	/**
-	 * @param password
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public void setPassword(String password) {
 		this.password = password;

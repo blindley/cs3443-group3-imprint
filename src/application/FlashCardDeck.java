@@ -6,14 +6,23 @@ import java.util.TreeSet;
 public class FlashCardDeck {
 	HashMap<String, FlashCard> theCards;
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	FlashCardDeck() {
 		theCards = new HashMap<String, FlashCard>();
 	}
-	/**
-	 * @param id
-	 * @return
-	 */
-	public FlashCard getCard(String id) {
+
+	//**
+	* TODO: purpose of the function
+	* 
+	* @param TODO: purpose of the parameter
+	* @return TODO: What does this function return?
+	*/
+   public FlashCard getCard(String id) {
 		return theCards.get(id);
 	}	
 	/**
@@ -23,8 +32,12 @@ public class FlashCardDeck {
 	public void addOrUpdateCard(String id, FlashCard card) {
 		theCards.put(id, card);
 	}
+
 	/**
-	 * @return
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public TreeSet<String> getCardIds() {
 		TreeSet<String> ids = new TreeSet<String>();

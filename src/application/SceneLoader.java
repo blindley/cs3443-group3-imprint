@@ -9,10 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
 public class SceneLoader {
+
 	/**
-	 * @param userName
-	 * @return
-	 * @throws IOException
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public static Scene loadDeckSelectionScene(String userName) throws IOException {
 		if (userName != null)
@@ -27,11 +29,12 @@ public class SceneLoader {
 
 		return scene;
 	}
+
 	/**
-	 * @param userName
-	 * @param deckName
-	 * @return
-	 * @throws IOException
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public static Scene loadReviewSessionScene(String userName, String deckName) throws IOException {
 		ReviewSession session = new ReviewSession(userName, deckName);
@@ -52,9 +55,12 @@ public class SceneLoader {
 			return null;
 		}
 	}
+
 	/**
-	 * @return
-	 * @throws IOException
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public static Scene loadUserLoginScene() throws IOException {
 		URL url = new File("src/application/UserLogin.fxml").toURI().toURL();
@@ -63,9 +69,12 @@ public class SceneLoader {
 
 		return scene;
 	}
+
 	/**
-	 * @return
-	 * @throws IOException
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public static Scene loadNewUserScene() throws IOException {
 		URL url = new File("src/application/NewUser.fxml").toURI().toURL();
@@ -74,9 +83,12 @@ public class SceneLoader {
 
 		return scene;
 	}
+
 	/**
-	 * @return
-	 * @throws IOException
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public static Scene loadForgotPasswordScene() throws IOException {
 		URL url = new File("src/application/ForgotPassword.fxml").toURI().toURL();

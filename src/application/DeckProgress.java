@@ -21,9 +21,10 @@ public class DeckProgress {
 	int newCardsAddedToday;
 
 	/**
+	 * TODO: purpose of the function
 	 * 
-	 * Adds 5 cards per day for each session
-	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public DeckProgress() {
 		nextCard = null;
@@ -33,6 +34,12 @@ public class DeckProgress {
 		newCardsAddedToday = 0;
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	private void moveNewCardToReviewQueue() {
 		if (newCardsAddedToday < maxNewCardsPerDay) {
 			String nextNewCardId = newCards.poll();
@@ -48,6 +55,12 @@ public class DeckProgress {
 		}
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	private void updateNextCard() {
 		if (nextCard == null) {
 			CardProgress nextReviewCard = reviewQueue.peek();
@@ -73,12 +86,21 @@ public class DeckProgress {
 		}
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	void addNewCard(String id) {
 		newCards.add(id);
 	}
 
 	/**
-	 * @return
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public String getNextDueCardId() {
 		updateNextCard();
@@ -90,7 +112,10 @@ public class DeckProgress {
 	}
 
 	/**
-	 * Each card passed has an ID and interval it gets pulled by
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public void passNextCard() {
 		updateNextCard();
@@ -207,6 +232,12 @@ public class DeckProgress {
 		}
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	private static String buildProgressFilePath(String userName, String deckName) {
 		return "data/users/" + userName + "/" + deckName + ".csv";
 	}
@@ -223,6 +254,12 @@ public class DeckProgress {
 		return LocalDateTime.now().plusDays(dateOffset);
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	private static LocalDateTime today() {
 		return now().toLocalDate().atStartOfDay();
 	}

@@ -126,6 +126,12 @@ public class UserLoginController {
 	ToggleGroup securityQuestions2 = new ToggleGroup();
 	ToggleGroup securityQuestions3 = new ToggleGroup();
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	@FXML
 	void validateUser(ActionEvent event) throws IOException {
 
@@ -196,6 +202,12 @@ public class UserLoginController {
 		}
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	public void initialToggle() {
 
 		sq1_1.setToggleGroup(securityQuestions1);
@@ -218,6 +230,12 @@ public class UserLoginController {
 
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	@FXML
 	void sqSelect(ActionEvent event) {
 
@@ -317,6 +335,12 @@ public class UserLoginController {
 	}
 
 	// Sets starting postion for the ForgotPassword.fxml view
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	void setStart() {
 		passwrdLabel.setVisible(false);
 		passwrdField.setVisible(false);
@@ -339,6 +363,12 @@ public class UserLoginController {
 
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	@FXML
 	void verifyUser(ActionEvent event) {
 
@@ -369,6 +399,12 @@ public class UserLoginController {
 		}
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	@FXML
 	void newUser(ActionEvent event) throws IOException {
 		Stage stage = Main.getPrimaryStage();
@@ -377,6 +413,12 @@ public class UserLoginController {
 		stage.setScene(scene);
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	@FXML
 	void home_screen(ActionEvent event) throws IOException {
 		Stage stage = Main.getPrimaryStage();
@@ -385,6 +427,12 @@ public class UserLoginController {
 		stage.setScene(scene);
 	}
 
+	/**
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
+	 */
 	@FXML
 	void passwordChange(ActionEvent event) {
 

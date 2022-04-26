@@ -11,6 +11,7 @@ public class Main extends Application {
 
 	static ReviewSession reviewSession;
 	static String userName;
+
 	/**
 	 * @return the primary stage for scenebuilder
 	 */
@@ -57,8 +58,12 @@ public class Main extends Application {
 		primaryStage.setTitle("ImprinT");
 		primaryStage.show();
 	}
+
 	/**
-	 * @param args the main string
+	 * TODO: purpose of the function
+	 * 
+	 * @param TODO: purpose of the parameter
+	 * @return TODO: What does this function return?
 	 */
 	public static void main(String[] args) {
 		
