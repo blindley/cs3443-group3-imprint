@@ -20,3 +20,9 @@ Then you can log in with the following credentials:
 
     e-mail:    example@example.com
     password:  password
+    
+If you need to click on "Forgot Password" for the example user, you can use the following answers for security questions:
+
+    Q: In what city were you born?             A: city
+    Q: What is the name of your favorite pet?  A: pet
+    Q: What is your mother's maiden name?      A: mom
